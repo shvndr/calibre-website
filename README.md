@@ -59,22 +59,27 @@ No libraries. No frameworks. Just fundamentals done right.
 
 ## 📂 Project Structure
 
-```plaintext
-calibre-website/
-│── .github/workflows/      # GitHub Pages deployment
-│── pfp/                    # Member profile images
-│── straps/                 # Watch straps assets
-│── watches images/         # Watch images
-│
-│── index.html              # Home page
-│── about.html              # About section
-│── brands.html             # Watch brands
-│── watches.html            # Watches showcase
-│── new-arrivals.html       # Latest collections
-│── straps.html             # Straps section
-│── members.html            # Team page
-│
-│── README.md
+```calibre-website/
+├── .github/
+│   └── workflows/           # GitHub Pages deployment workflows
+
+├── images/
+│   ├── category/            # Categories of images
+│   ├── logos/               # Logos assets
+│   ├── pfp/                 # Member profile images
+│   ├── straps/              # Watch straps assets
+│   └── watches/             # Watch images
+
+├── about.html               # About section
+├── brands.html              # Watch brands
+├── index.html               # Home page
+├── members.html             # Team page
+├── new-arrivals.html        # Latest collections
+├── README.md                # Project documentation
+├── straps.html              # Straps section
+├── static.yml               # Static site config (likely)
+├── straps.html              # Straps page
+├── watches.html             # Watches showcase
 ```
 
 ---
