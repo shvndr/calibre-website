@@ -1,5 +1,3 @@
-Alright — let’s make this feel like a **🔥 polished, standout GitHub README** (the kind people actually star). I’ll upgrade the tone, flow, and add some personality while keeping it clean and professional.
-
 ---
 
 # ⌚ Calibre Watches
@@ -177,15 +175,3 @@ If you like this project:
 This project is created for **educational purposes only**.
 
 ---
-
-## 💬 Want Me to Make It Even Better?
-
-I can upgrade this further with:
-
-* 🔥 GIF preview (auto-playing demo)
-* 🧠 “Design philosophy” section
-* 🎨 Color palette + typography section
-* 📊 Contribution breakdown per member
-* 🏆 “Best features” highlight section
-
-Just tell me 👍
