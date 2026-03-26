@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — Straps &amp; Accessories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;--bronze:#b8954a;--bronze-lt:#d4ae6e;--bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.06);--cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;--px:1rem;--nav-h:3.75rem;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans','Helvetica Neue',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-style:none}
+
+.announce{background:var(--navy);border-bottom:1px solid var(--bronze-dim);text-align:center;padding:.5rem var(--px);font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bronze-dim);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--cream)}.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);padding:1.5rem var(--px);gap:1rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* PAGE HEADER */
+.page-hdr{background:linear-gradient(to bottom,var(--navy),var(--ink));border-bottom:1px solid var(--bronze-dim);padding:2.5rem var(--px) 2rem;position:relative;overflow:hidden}
+.page-hdr::after{content:'';position:absolute;top:-60%;right:-10%;width:min(500px,80vw);height:min(500px,80vw);border-radius:50%;background:radial-gradient(circle,rgba(184,149,74,.05) 0%,transparent 70%);pointer-events:none}
+.breadcrumb{font-size:.5625rem;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);margin-bottom:1rem;font-family:var(--sans);font-weight:500}
+.breadcrumb em{color:var(--bronze);font-style:normal}
+.page-hdr h1{font-family:var(--serif);font-size:clamp(1.75rem,5vw,3rem);font-weight:300;font-style:italic;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hdr p{color:var(--slate-mid);font-size:.9375rem;max-width:36rem;line-height:1.75;font-weight:300}
+
+/* MATERIAL GUIDE */
+.guide{background:var(--navy);border-bottom:1px solid var(--bronze-dim);padding:2rem var(--px)}
+.g-title{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:1.25rem;font-weight:500}
+.g-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--bronze-dim);border:1px solid var(--bronze-dim)}
+.g-card{background:var(--ink);padding:1.25rem}
+.g-mat{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--cream);margin-bottom:.375rem}
+.g-desc{font-size:.75rem;color:var(--slate-mid);line-height:1.65;font-weight:300}
+.g-fit{font-family:var(--sans);font-size:.4375rem;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-top:.5rem;font-weight:500}
+
+/* STRAPS GRID */
+.straps-wrap{padding:2rem var(--px) 4rem}
+.sec-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.sec-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;font-weight:500}
+.sec-line{flex:1;height:1px;background:var(--bronze-dim)}
+.sec-cnt{font-family:var(--sans);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);white-space:nowrap;font-weight:500}
+.sgrid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2.5rem}
+
+/* strap card */
+.scard{background:var(--navy);border:1px solid var(--bronze-dim);overflow:hidden;transition:border-color .3s,transform .3s;cursor:pointer}
+.scard:hover{border-color:rgba(184,149,74,.45);transform:translateY(-2px)}
+.s-img{background:var(--navy-img);aspect-ratio:3/2;overflow:hidden;border-bottom:1px solid var(--bronze-dim)}
+.s-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;filter:brightness(.85) contrast(1.05)}
+.scard:hover .s-img img{transform:scale(1.06);filter:brightness(.95)}
+.s-body{padding:1rem}
+.s-mat{font-family:var(--sans);font-size:.4375rem;letter-spacing:.46em;text-transform:uppercase;color:var(--bronze);margin-bottom:.3rem;font-weight:500}
+.s-name{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--cream);margin-bottom:.2rem}
+.s-desc{font-size:.75rem;color:var(--slate-mid);line-height:1.65;margin-bottom:.625rem;font-weight:300}
+.s-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.625rem}
+.tag{font-family:var(--sans);font-size:.4375rem;letter-spacing:.22em;text-transform:uppercase;color:var(--slate-mid);border:1px solid var(--bronze-dim);padding:.1875rem .4375rem;font-weight:500}
+.s-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.625rem;border-top:1px solid var(--bronze-dim)}
+.s-price{font-family:var(--serif);font-size:.9375rem;font-style:italic;color:var(--bronze-lt)}
+.btn-sm{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.4375rem;letter-spacing:.3em;text-transform:uppercase;padding:.4375rem .75rem;font-weight:500;transition:background .2s;border:none;cursor:pointer;display:inline-block}
+.btn-sm:hover{background:var(--bronze-lt)}
+
+/* SIZE GUIDE TABLE */
+.size-guide{background:var(--navy);border:1px solid var(--bronze-dim);padding:1.5rem;margin-bottom:2rem;overflow-x:auto}
+.sg-title{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+table{width:100%;border-collapse:collapse;min-width:320px}
+th{font-family:var(--sans);font-size:.4375rem;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);padding:.5rem .625rem;text-align:left;border-bottom:1px solid var(--bronze-dim);font-weight:500}
+td{font-size:.8125rem;color:var(--slate-mid);padding:.5rem .625rem;border-bottom:1px solid var(--bronze-faint);font-weight:300}
+tr:last-child td{border-bottom:none}
+tr:hover td{color:var(--cream)}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.fcol h4{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+.fcol li{margin-bottom:.625rem}.fcol a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.fbot p{font-family:var(--sans);font-size:.625rem;letter-spacing:.18em;color:var(--slate)}
+.flogo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.flogo em{color:var(--bronze);font-style:normal}
+
+@media(min-width:480px){:root{--px:1.5rem}.sgrid{grid-template-columns:repeat(2,1fr)}.g-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){:root{--px:2.5rem;--nav-h:4rem}.nav-right{display:flex}.fgrid{grid-template-columns:repeat(4,1fr)}.fbot{flex-direction:row;justify-content:space-between;text-align:left}.g-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){:root{--px:3rem}.nav-links{display:flex}.hamburger{display:none}.mobile-menu{display:none!important}.sgrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1280px){:root{--px:4rem}.sgrid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="watches.html">Watches</a></li>
+    <li><a href="brands.html">Brands</a></li><li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="straps.html" class="on">Straps</a></li><li><a href="about.html">About</a></li><li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="watches.html">Watches</a><a href="brands.html">Brands</a>
+  <a href="new-arrivals.html">New Arrivals</a><a href="straps.html" class="on">Straps</a><a href="about.html">About</a><a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<div class="page-hdr">
+  <div class="breadcrumb">Calibre &nbsp;/&nbsp; <em>Straps &amp; Accessories</em></div>
+  <h1>Straps &amp;<br>Accessories</h1>
+  <p>The right strap transforms a watch. Our curated selection spans leather, rubber, fabric, and metal — in lug widths from 18mm to 22mm.</p>
+</div>
+
+<!-- MATERIAL GUIDE -->
+<div class="guide">
+  <div class="g-title">Material Guide</div>
+  <div class="g-grid">
+    <div class="g-card"><div class="g-mat">Calf Leather</div><div class="g-desc">Classic hand-stitched calfskin. Ideal for dress and casual watches. Develops character with wear.</div><div class="g-fit">Best for: Dress · Casual</div></div>
+    <div class="g-card"><div class="g-mat">Rubber / FKM</div><div class="g-desc">Fluoropolymer rubber — water-resistant, odour-proof, and sport-ready. Vulcanised for durability.</div><div class="g-fit">Best for: Diver · Sport</div></div>
+    <div class="g-card"><div class="g-mat">NATO / Nylon</div><div class="g-desc">Military-grade woven nylon. Lightweight and breathable — perfect for summer and outdoor wear.</div><div class="g-fit">Best for: Field · Casual · Pilot</div></div>
+    <div class="g-card"><div class="g-mat">Jubilee / Oyster Steel</div><div class="g-desc">Brushed and polished stainless steel bracelet. Integrated or universal — formal and durable.</div><div class="g-fit">Best for: Diver · GMT · Dress</div></div>
+  </div>
+</div>
+
+<!-- STRAPS -->
+<div class="straps-wrap">
+
+  <div class="sec-head"><span class="sec-lbl">Leather Straps</span><div class="sec-line"></div><span class="sec-cnt">6 styles</span></div>
+  <div class="sgrid">
+    <div class="scard">
+      <div class="s-img"><img src="straps/dark brown vintage strap.jpg" alt="Dark Brown Vintage Leather"></div>
+      <div class="s-body"><div class="s-mat">Calf Leather</div><div class="s-name">Dark Brown Vintage</div><div class="s-desc">Hand-stitched with a vintage finish and quick-release spring bars. Tapers from 20mm to 18mm.</div><div class="s-tags"><span class="tag">20mm</span><span class="tag">Quick Release</span><span class="tag">Tan Stitch</span></div><div class="s-foot"><div class="s-price">₹2,800</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+    <div class="scard">
+      <div class="s-img"><img src="straps/jet black strap.jpg" alt="Black Smooth Leather"></div>
+      <div class="s-body"><div class="s-mat">Calf Leather</div><div class="s-name">Jet Black Smooth</div><div class="s-desc">Mirror-smooth black calfskin with black stitching. The most versatile dress strap in our range.</div><div class="s-tags"><span class="tag">18–22mm</span><span class="tag">Dress</span><span class="tag">Black Stitch</span></div><div class="s-foot"><div class="s-price">₹2,500</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+    <div class="scard">
+      <div class="s-img"><img src="straps/cognac padded strap.jpg" alt="Cognac Leather Strap"></div>
+      <div class="s-body"><div class="s-mat">Calf Leather</div><div class="s-name">Cognac Padded</div><div class="s-desc">Rich cognac tone with cream stitching. Extra padding for comfort — great on field and dress watches.</div><div class="s-tags"><span class="tag">20mm</span><span class="tag">Padded</span><span class="tag">Cream Stitch</span></div><div class="s-foot"><div class="s-price">₹3,200</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="sec-lbl">Rubber &amp; Sport Straps</span><div class="sec-line"></div><span class="sec-cnt">4 styles</span></div>
+  <div class="sgrid">
+    <div class="scard">
+      <div class="s-img"><img src="straps/stealth black fkm strap.jpg" alt="Black FKM Rubber"></div>
+      <div class="s-body"><div class="s-mat">FKM Rubber</div><div class="s-name">Stealth Black FKM</div><div class="s-desc">Vulcanised fluoropolymer rubber — saltwater and UV resistant. Textured for grip.</div><div class="s-tags"><span class="tag">20–22mm</span><span class="tag">Waterproof</span><span class="tag">Dive Ready</span></div><div class="s-foot"><div class="s-price">₹3,600</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+    <div class="scard">
+      <div class="s-img"><img src="straps/deep navy rubber strap.jpg" alt="Navy Rubber Strap"></div>
+      <div class="s-body"><div class="s-mat">FKM Rubber</div><div class="s-name">Deep Navy Rubber</div><div class="s-desc">Colour-matched for blue-dial divers. Ribbed underside for ventilation and ocean comfort.</div><div class="s-tags"><span class="tag">22mm</span><span class="tag">Ventilated</span><span class="tag">Blue</span></div><div class="s-foot"><div class="s-price">₹3,600</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+    <div class="scard">
+      <div class="s-img"><img src="straps/bond nato grey strap.jpg" alt="NATO Strap"></div>
+      <div class="s-body"><div class="s-mat">Mil-Spec Nylon</div><div class="s-name">Bond NATO — Grey</div><div class="s-desc">Classic two-piece NATO in charcoal grey. 1.2mm polished hardware. Goes with everything.</div><div class="s-tags"><span class="tag">18–22mm</span><span class="tag">NATO</span><span class="tag">Universal</span></div><div class="s-foot"><div class="s-price">₹1,200</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+    <div class="scard">
+      <div class="s-img"><img src="straps/field khaki nato strap.jpg" alt="Khaki NATO Strap"></div>
+      <div class="s-body"><div class="s-mat">Mil-Spec Nylon</div><div class="s-name">Field Khaki NATO</div><div class="s-desc">Military-inspired khaki nylon — the ideal companion for Khaki Field and pilot watches.</div><div class="s-tags"><span class="tag">18–20mm</span><span class="tag">NATO</span><span class="tag">Military</span></div><div class="s-foot"><div class="s-price">₹1,200</div><a class="btn-sm" href="#">Add</a></div></div>
+    </div>
+  </div>
+
+  <!-- SIZE TABLE -->
+  <div class="size-guide">
+    <div class="sg-title">Lug Width Compatibility Guide</div>
+    <table>
+      <tr><th>Watch</th><th>Lug Width</th><th>Recommended</th></tr>
+      <tr><td>Omega Seamaster 42mm</td><td>22mm</td><td>FKM Rubber · Jubilee Bracelet</td></tr>
+      <tr><td>Tudor Black Bay GMT</td><td>22mm</td><td>Leather · NATO · Rubber</td></tr>
+      <tr><td>Hamilton Khaki Field</td><td>22mm</td><td>NATO · Khaki Leather</td></tr>
+      <tr><td>IWC Pilot Mark XX</td><td>20mm</td><td>Leather · NATO</td></tr>
+      <tr><td>NOMOS Tangente 38</td><td>18mm</td><td>Smooth Leather · Lizard-Grain</td></tr>
+      <tr><td>Junghans Max Bill</td><td>18mm</td><td>Smooth Black Leather</td></tr>
+      <tr><td>Seiko Marinemaster</td><td>22mm</td><td>Rubber · Bracelet</td></tr>
+      <tr><td>Oris Aquis Date</td><td>22mm</td><td>Rubber · NATO</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="fcol"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="fcol"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="fbot"><p>© 2025 Calibre. All rights reserved.</p><div class="flogo">Calibr<em>e</em></div><p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p></div>
+</footer>
+<script>var btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');btn.addEventListener('click',function(){btn.classList.toggle('open');menu.classList.toggle('open')});</script>
+</body>
+</html>

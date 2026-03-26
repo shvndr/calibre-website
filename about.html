@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;--bronze:#b8954a;--bronze-lt:#d4ae6e;--bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.06);--cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;--px:1rem;--nav-h:3.75rem;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans','Helvetica Neue',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-style:none}
+
+.announce{background:var(--navy);border-bottom:1px solid var(--bronze-dim);text-align:center;padding:.5rem var(--px);font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bronze-dim);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--cream)}.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);padding:1.5rem var(--px);gap:1rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* HERO */
+.story-hero{
+  min-height:55vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  background:linear-gradient(135deg,#050810 0%,#0c1525 60%,#080f1a 100%);
+}
+.story-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=1400&q=60') center/cover no-repeat;opacity:.12;mix-blend-mode:luminosity}
+.story-hero::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(600px,90vw);height:min(600px,90vw);border-radius:50%;border:1px solid rgba(184,149,74,.06);box-shadow:0 0 0 40px rgba(184,149,74,.03);pointer-events:none}
+.sh-inner{position:relative;z-index:2;padding:3rem var(--px);max-width:56rem}
+.sh-eyebrow{font-family:var(--sans);font-size:.5625rem;letter-spacing:.52em;text-transform:uppercase;color:var(--bronze);margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.sh-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--bronze)}
+.story-hero h1{font-family:var(--serif);font-size:clamp(2.25rem,7vw,4.5rem);font-weight:300;line-height:1.05;letter-spacing:.02em;margin-bottom:1.25rem}
+.story-hero h1 em{font-style:italic;color:var(--bronze)}
+.story-hero p{color:var(--slate-mid);font-size:clamp(.875rem,2vw,1.0625rem);max-width:36rem;line-height:1.85;font-weight:300}
+
+/* ABOUT STATS */
+.stats-bar{background:var(--navy);border-top:1px solid var(--bronze-dim);border-bottom:1px solid var(--bronze-dim);padding:1.75rem var(--px);display:flex;flex-wrap:wrap;gap:2rem}
+.sbar-item{flex:1;min-width:8rem}
+.sbar-num{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--bronze-lt);display:block;line-height:1;font-weight:300}
+.sbar-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.36em;text-transform:uppercase;color:var(--slate);font-weight:500}
+
+/* STORY SECTION */
+.story{padding:3.5rem var(--px)}
+.s-grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
+.s-col-img{background:var(--navy);border:1px solid var(--bronze-dim);overflow:hidden;aspect-ratio:4/3}
+.s-col-img img{width:100%;height:100%;object-fit:cover;opacity:.75;mix-blend-mode:luminosity;filter:brightness(.9) contrast(1.1)}
+.s-eyebrow{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:.875rem;font-weight:500;display:flex;align-items:center;gap:.625rem}
+.s-eyebrow::before{content:'';display:block;width:1.25rem;height:1px;background:var(--bronze)}
+.s-col h2{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.375rem);font-weight:300;font-style:italic;line-height:1.15;color:var(--cream);margin-bottom:1.25rem}
+.s-col p{color:var(--slate-mid);font-size:.9375rem;line-height:1.85;font-weight:300;margin-bottom:1rem}
+.s-col p:last-child{margin-bottom:0}
+
+/* PRINCIPLES */
+.principles{background:var(--navy);padding:3rem var(--px);border-top:1px solid var(--bronze-dim);border-bottom:1px solid var(--bronze-dim)}
+.pr-eyebrow{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:2rem;font-weight:500}
+.pr-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.pr-card{border:1px solid var(--bronze-dim);padding:1.5rem;background:var(--ink);position:relative;overflow:hidden}
+.pr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--bronze),transparent)}
+.pr-num{font-family:var(--serif);font-size:2.5rem;font-style:italic;color:rgba(184,149,74,.15);line-height:1;margin-bottom:.625rem;font-weight:300}
+.pr-title{font-family:var(--serif);font-size:1.125rem;font-style:italic;color:var(--cream);margin-bottom:.375rem}
+.pr-desc{font-size:.8125rem;color:var(--slate-mid);line-height:1.75;font-weight:300}
+
+/* TIMELINE */
+.timeline{padding:3rem var(--px)}
+.tl-head{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:2rem;font-weight:500}
+.tl-item{display:flex;gap:1.25rem;margin-bottom:1.75rem;position:relative}
+.tl-item::before{content:'';position:absolute;left:.375rem;top:1.5rem;bottom:-1.75rem;width:1px;background:var(--bronze-dim)}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:.75rem;height:.75rem;border-radius:50%;border:1px solid var(--bronze);background:var(--ink);flex-shrink:0;margin-top:.3rem}
+.tl-year{font-family:var(--serif);font-size:.9375rem;font-style:italic;color:var(--bronze);margin-bottom:.2rem}
+.tl-text{font-size:.8125rem;color:var(--slate-mid);line-height:1.7;font-weight:300}
+
+/* CONTACT */
+.contact{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:3rem var(--px)}
+.ct-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+.ct-head{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:300;font-style:italic;color:var(--cream);margin-bottom:.625rem}
+.ct-sub{color:var(--slate-mid);font-size:.9375rem;line-height:1.75;font-weight:300;margin-bottom:1.5rem}
+.ct-info{display:flex;flex-direction:column;gap:1rem}
+.ct-row{display:flex;gap:.75rem;align-items:flex-start}
+.ct-label{font-family:var(--sans);font-size:.5rem;letter-spacing:.36em;text-transform:uppercase;color:var(--bronze);min-width:5rem;flex-shrink:0;font-weight:500;padding-top:.125rem}
+.ct-val{font-size:.875rem;color:var(--slate-mid);font-weight:300;line-height:1.6}
+.ct-form{display:flex;flex-direction:column;gap:.75rem}
+.ct-form input,.ct-form textarea{background:var(--ink);border:1px solid var(--bronze-dim);color:var(--cream);font-family:var(--sans);font-size:.8125rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;font-weight:300;resize:vertical}
+.ct-form input::placeholder,.ct-form textarea::placeholder{color:var(--slate)}
+.ct-form input:focus,.ct-form textarea:focus{border-color:var(--bronze)}
+.ct-form textarea{min-height:7rem}
+.btn-primary{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;padding:.875rem 1.75rem;cursor:pointer;transition:background .2s;border:none;display:inline-block;align-self:flex-start}
+.btn-primary:hover{background:var(--bronze-lt)}
+
+/* EDITORIAL QUOTE */
+.quote-bar{background:var(--ink);border-top:1px solid var(--bronze-dim);border-bottom:1px solid var(--bronze-dim);padding:3rem var(--px);text-align:center}
+.quote-bar blockquote{font-family:var(--serif);font-size:clamp(1.1rem,3vw,1.75rem);font-style:italic;font-weight:300;color:var(--cream);line-height:1.55;max-width:40rem;margin:0 auto .875rem}
+.quote-bar cite{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);font-style:normal}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.fcol h4{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+.fcol li{margin-bottom:.625rem}.fcol a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.fbot p{font-family:var(--sans);font-size:.625rem;letter-spacing:.18em;color:var(--slate)}
+.flogo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.flogo em{color:var(--bronze);font-style:normal}
+
+@media(min-width:480px){:root{--px:1.5rem}.pr-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){:root{--px:2.5rem;--nav-h:4rem}.nav-right{display:flex}.fgrid{grid-template-columns:repeat(4,1fr)}.fbot{flex-direction:row;justify-content:space-between;text-align:left}.s-grid{grid-template-columns:1fr 1fr;align-items:center}.ct-grid{grid-template-columns:1fr 1fr}.pr-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){:root{--px:3rem}.nav-links{display:flex}.hamburger{display:none}.mobile-menu{display:none!important}.pr-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1280px){:root{--px:4rem}}
+</style>
+</head>
+<body>
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="watches.html">Watches</a></li>
+    <li><a href="brands.html">Brands</a></li><li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="straps.html">Straps</a></li><li><a href="about.html" class="on">About</a></li><li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="watches.html">Watches</a><a href="brands.html">Brands</a>
+  <a href="new-arrivals.html">New Arrivals</a><a href="straps.html">Straps</a><a href="about.html" class="on">About</a><a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="sh-inner">
+    <div class="sh-eyebrow">Our Story</div>
+    <h1>A love for<br><em>mechanical time</em></h1>
+    <p>Calibre was founded by watch enthusiasts who believed the Indian market deserved a curated alternative to grey-market uncertainty. Every piece we stock is authenticated, priced honestly, and chosen with genuine care.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="sbar-item"><span class="sbar-num">2024</span><span class="sbar-lbl">Founded</span></div>
+  <div class="sbar-item"><span class="sbar-num">32</span><span class="sbar-lbl">Watches in Stock</span></div>
+  <div class="sbar-item"><span class="sbar-num">20</span><span class="sbar-lbl">Brands Carried</span></div>
+  <div class="sbar-item"><span class="sbar-num">100%</span><span class="sbar-lbl">Authenticated</span></div>
+  <div class="sbar-item"><span class="sbar-num">Mumbai</span><span class="sbar-lbl">Home Base</span></div>
+</div>
+
+<!-- STORY -->
+<section class="story">
+  <div class="s-grid">
+    <div class="s-col-img">
+      <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=800&q=75" alt="Watch movement">
+    </div>
+    <div class="s-col">
+      <div class="s-eyebrow">The Beginning</div>
+      <h2>Why We<br>Started Calibre</h2>
+      <p>The Indian market for fine watches was either overpriced authorised retail or the anxious gamble of grey imports with no service safety net. There was no middle ground — no place where you could buy with confidence, read genuine editorial guidance, and know the watch was real.</p>
+      <p>We built Calibre to fill that gap. Our collection is deliberately small. Every watch on these pages has been personally handled, researched, and selected on the basis of mechanical merit, long-term value, and whether we'd actually wear it ourselves.</p>
+      <p>We are authorised partners for several brands and work with verified global distributors for the rest. Every piece ships with documentation, comes with our own 2-year service cover, and is ours to stand behind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<div class="principles">
+  <div class="pr-eyebrow">How We Work</div>
+  <div class="pr-grid">
+    <div class="pr-card"><div class="pr-num">01</div><div class="pr-title">Curation over volume</div><div class="pr-desc">We stock 32 watches at a time, not 3,200. Every addition requires removing something — or finding space by conviction.</div></div>
+    <div class="pr-card"><div class="pr-num">02</div><div class="pr-title">No grey market</div><div class="pr-desc">Every piece is sourced through authorised channels. We publish our supply chain on request.</div></div>
+    <div class="pr-card"><div class="pr-num">03</div><div class="pr-title">Honest pricing</div><div class="pr-desc">We do not inflate prices and discount them. Prices reflect actual landed cost plus a transparent margin.</div></div>
+    <div class="pr-card"><div class="pr-num">04</div><div class="pr-title">Real after-care</div><div class="pr-desc">Our 2-year service warranty is backed by authorised technicians. We do not outsource post-sale responsibility.</div></div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="tl-head">Calibre — A Brief History</div>
+  <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-year">January 2024</div><div class="tl-text">Calibre is founded in Mumbai by two mechanical watch collectors frustrated with the existing market landscape.</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-year">March 2024</div><div class="tl-text">First collection launched — 12 watches, 8 brands. All sold out within 6 weeks. The waitlist begins.</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-year">July 2024</div><div class="tl-text">Formal authorised dealer status awarded for Hamilton, Longines, and Tissot. Service infrastructure established.</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-year">December 2024</div><div class="tl-text">Collection expands to 32 pieces across 20 brands. The strap programme launches alongside dedicated watch care guides.</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-year">2025 →</div><div class="tl-text">Physical consultation studio opening in Mumbai. Book your appointment through the contact form below.</div></div></div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-bar">
+  <blockquote>"We don't sell watches. We help people find the right one — and then stand behind it for years."</blockquote>
+  <cite>— Founders, Calibre</cite>
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+  <div class="ct-grid">
+    <div>
+      <div class="ct-head">Get in Touch</div>
+      <p class="ct-sub">Questions about a specific watch, a request for something not in the collection, or just want to talk horology? We respond to every message personally.</p>
+      <div class="ct-info">
+        <div class="ct-row"><span class="ct-label">Email</span><span class="ct-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="325a575e5e5d7251535e5b504057455346515a57411c5b5c">[email&#160;protected]</a></span></div>
+        <div class="ct-row"><span class="ct-label">Phone</span><span class="ct-val">+91 98765 43210<br><em style="font-size:.75rem;color:var(--slate)">Mon–Sat, 10am–7pm IST</em></span></div>
+        <div class="ct-row"><span class="ct-label">Location</span><span class="ct-val">Mumbai, Maharashtra<br><em style="font-size:.75rem;color:var(--slate)">By appointment only</em></span></div>
+        <div class="ct-row"><span class="ct-label">Instagram</span><span class="ct-val">@calibrewatches</span></div>
+      </div>
+    </div>
+    <div class="ct-form">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="Email address">
+      <input type="text" placeholder="Subject (e.g. Watch enquiry · Consultation · Other)">
+      <textarea placeholder="Your message — tell us what you're looking for..."></textarea>
+      <a href="#" class="btn-primary">Send Message</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="fcol"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="fcol"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="fbot"><p>© 2025 Calibre. All rights reserved.</p><div class="flogo">Calibr<em>e</em></div><p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p></div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.

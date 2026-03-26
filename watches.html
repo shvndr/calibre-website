@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — Watches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;
+  --bronze:#b8954a;--bronze-lt:#d4ae6e;
+  --bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.06);
+  --cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;
+  --px:1rem;--nav-h:3.75rem;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+.announce{background:var(--navy);border-bottom:1px solid var(--bronze-dim);text-align:center;padding:.5rem var(--px);font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bronze-dim);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-family:var(--sans);font-weight:500}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);padding:1.5rem var(--px);gap:1rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}
+.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* PAGE HEADER */
+.page-hdr{
+  background:linear-gradient(to bottom,var(--navy),var(--ink));
+  border-bottom:1px solid var(--bronze-dim);
+  padding:2.5rem var(--px) 2rem;position:relative;overflow:hidden;
+}
+.page-hdr::after{
+  content:'';position:absolute;top:-60%;right:-10%;
+  width:min(500px,80vw);height:min(500px,80vw);border-radius:50%;
+  background:radial-gradient(circle,rgba(184,149,74,.05) 0%,transparent 70%);pointer-events:none;
+}
+.breadcrumb{font-size:.5625rem;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);margin-bottom:1rem;font-family:var(--sans);font-weight:500}
+.breadcrumb em{color:var(--bronze);font-style:normal}
+.page-hdr h1{font-family:var(--serif);font-size:clamp(1.75rem,5vw,3rem);font-weight:300;font-style:italic;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hdr p{color:var(--slate-mid);font-size:.9375rem;max-width:36rem;line-height:1.75;font-weight:300}
+.hdr-count{display:none;text-align:right}
+.hdr-count b{display:block;font-family:var(--serif);font-size:clamp(2.5rem,5vw,3.5rem);font-style:italic;color:var(--bronze);line-height:1;font-weight:300}
+.hdr-count small{font-size:.5625rem;letter-spacing:.44em;text-transform:uppercase;color:var(--slate);font-family:var(--sans)}
+
+/* LAYOUT */
+.layout{display:flex;flex-direction:column;gap:2rem;padding:1.75rem var(--px) 4rem}
+
+/* SIDEBAR */
+aside{width:100%}
+.sb-title{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--bronze-dim);font-weight:500}
+.brand-row{display:flex;justify-content:space-between;padding:.375rem 0;border-bottom:1px solid var(--bronze-faint)}
+.brand-row:last-child{border-bottom:none}
+.brand-row span:first-child{font-size:.75rem;color:var(--slate-mid);font-weight:300}
+.brand-row span:last-child{font-size:.5625rem;color:var(--bronze);font-style:italic;font-family:var(--serif)}
+.sb-divider{height:1px;background:var(--bronze-dim);margin:1.5rem 0}
+.stat-num{display:block;font-family:var(--serif);font-size:1.625rem;font-style:italic;color:var(--bronze-lt);line-height:1;font-weight:300}
+.stat-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);font-weight:500}
+.stat-block{margin-bottom:1rem}
+.sb-help p{font-size:.75rem;line-height:1.7;color:var(--slate-mid);font-weight:300}
+.sb-help-link{display:inline-block;margin-top:.625rem;font-size:.6875rem;color:var(--bronze);letter-spacing:.12em}
+
+/* Mobile chip strip */
+.chips{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:1.25rem}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;background:var(--navy);border:1px solid var(--bronze-dim);padding:.3rem .7rem;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--slate-mid);white-space:nowrap;font-family:var(--sans);font-weight:500}
+.sb-desktop{display:none}
+
+/* CATEGORY DIVIDER */
+.cat-div{display:flex;align-items:center;gap:.75rem;margin:2.5rem 0 1.25rem;flex-wrap:wrap}
+.cat-div:first-of-type{margin-top:0}
+.cat-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;font-weight:500}
+.cat-line{flex:1;height:1px;background:var(--bronze-dim);min-width:1rem}
+.cat-brands{font-size:.5rem;color:rgba(184,149,74,.5);font-style:italic;white-space:nowrap;display:none;font-family:var(--serif)}
+.cat-cnt{font-family:var(--sans);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);white-space:nowrap;font-weight:500}
+
+/* WATCH GRID */
+.wgrid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:.5rem}
+
+/* WATCH CARD */
+.card{background:var(--navy);border:1px solid var(--bronze-dim);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.card:hover{border-color:rgba(184,149,74,.45);transform:translateY(-2px)}
+.badge{position:absolute;top:.875rem;left:.875rem;z-index:2;font-size:.4375rem;letter-spacing:.38em;text-transform:uppercase;padding:.25rem .625rem;font-family:var(--sans);font-weight:500}
+.bn{background:var(--bronze);color:var(--ink)}
+.bb{background:var(--navy-mid);border:1px solid var(--bronze);color:var(--bronze-lt)}
+.bs{border:1px solid var(--bronze);color:var(--bronze)}
+.cimg{background:var(--navy-img);aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--bronze-dim)}
+.cimg img{width:100%;height:100%;object-fit:contain;padding:1.25rem;transition:transform .4s}
+.card:hover .cimg img{transform:scale(1.06)}
+.cbody{padding:1rem;display:flex;flex-direction:column;flex:1}
+.cbrand{font-family:var(--sans);font-size:.4375rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:.3rem;font-weight:500}
+.cname{font-family:var(--serif);font-size:.9375rem;font-style:italic;color:var(--cream);margin-bottom:.2rem;line-height:1.3}
+.cref{font-family:var(--sans);font-size:.5rem;letter-spacing:.18em;color:var(--slate);margin-bottom:.625rem}
+.ctags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.625rem}
+.tag{font-family:var(--sans);font-size:.4375rem;letter-spacing:.22em;text-transform:uppercase;color:var(--slate-mid);border:1px solid var(--bronze-dim);padding:.1875rem .4375rem;font-weight:500}
+.cfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.625rem;border-top:1px solid var(--bronze-dim)}
+.cprice{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--bronze-lt)}
+.cprice s{color:var(--slate);font-size:.75rem;margin-right:.3rem}
+.vbtn{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.4375rem;letter-spacing:.3em;text-transform:uppercase;padding:.4375rem .75rem;font-weight:500;transition:background .2s;border:none;cursor:pointer;display:inline-block}
+.vbtn:hover{background:var(--bronze-lt)}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.fcol h4{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+.fcol li{margin-bottom:.625rem}
+.fcol a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}
+.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.fbot p{font-family:var(--sans);font-size:.625rem;letter-spacing:.18em;color:var(--slate)}
+.flogo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.flogo em{color:var(--bronze);font-style:normal}
+
+/* RESPONSIVE */
+@media(min-width:480px){:root{--px:1.5rem}.wgrid{grid-template-columns:repeat(2,1fr)}.cat-brands{display:inline}.hdr-count{display:block}.page-hdr{display:flex;align-items:center;justify-content:space-between}}
+@media(min-width:768px){:root{--px:2.5rem;--nav-h:4rem}.nav-right{display:flex}.fgrid{grid-template-columns:repeat(4,1fr)}.fbot{flex-direction:row;justify-content:space-between;text-align:left}.sb-desktop{display:block}.chips{display:none}}
+@media(min-width:1024px){:root{--px:3rem}.nav-links{display:flex}.hamburger{display:none}.mobile-menu{display:none!important}.layout{flex-direction:row;align-items:flex-start;gap:2.5rem}.wgrid{grid-template-columns:repeat(3,1fr)}aside{width:13rem;flex-shrink:0;position:sticky;top:calc(var(--nav-h) + 1rem)}}
+@media(min-width:1280px){:root{--px:4rem}aside{width:14rem}}
+</style>
+</head>
+<body>
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="watches.html" class="on">Watches</a></li>
+    <li><a href="brands.html">Brands</a></li>
+    <li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="straps.html">Straps</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="watches.html" class="on">Watches</a>
+  <a href="brands.html">Brands</a><a href="new-arrivals.html">New Arrivals</a>
+  <a href="straps.html">Straps</a><a href="about.html">About</a><a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<div class="page-hdr">
+  <div>
+    <div class="breadcrumb">Calibre &nbsp;/&nbsp; <em>Watches</em></div>
+    <h1>The Collection</h1>
+    <p>Curated timepieces across six disciplines — chosen for mechanical integrity, design honesty, and lasting value.</p>
+  </div>
+  <div class="hdr-count"><b>32</b><small>Timepieces</small></div>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside>
+    <!-- Mobile chips -->
+    <div class="chips">
+      <div class="chip">Omega</div><div class="chip">Tudor</div><div class="chip">Seiko</div>
+      <div class="chip">IWC</div><div class="chip">Hamilton</div><div class="chip">Longines</div>
+      <div class="chip">NOMOS</div><div class="chip">Grand Seiko</div><div class="chip">Breitling</div>
+      <div class="chip">Zenith</div><div class="chip">TAG Heuer</div><div class="chip">Oris</div>
+      <div class="chip">Certina</div><div class="chip">Doxa</div><div class="chip">Tissot</div>
+      <div class="chip">Junghans</div><div class="chip">Formex</div><div class="chip">Fr. Constant</div>
+      <div class="chip">Bulova</div><div class="chip">Laco</div>
+    </div>
+    <!-- Desktop sidebar -->
+    <div class="sb-desktop">
+      <div class="sb-title">Brand Index</div>
+      <div class="brand-row"><span>Breitling</span><span>2</span></div>
+      <div class="brand-row"><span>Bulova</span><span>1</span></div>
+      <div class="brand-row"><span>Certina</span><span>2</span></div>
+      <div class="brand-row"><span>Doxa</span><span>1</span></div>
+      <div class="brand-row"><span>Formex</span><span>1</span></div>
+      <div class="brand-row"><span>Frederique Constant</span><span>1</span></div>
+      <div class="brand-row"><span>Grand Seiko</span><span>1</span></div>
+      <div class="brand-row"><span>Hamilton</span><span>4</span></div>
+      <div class="brand-row"><span>IWC</span><span>1</span></div>
+      <div class="brand-row"><span>Junghans</span><span>1</span></div>
+      <div class="brand-row"><span>Laco</span><span>1</span></div>
+      <div class="brand-row"><span>Longines</span><span>3</span></div>
+      <div class="brand-row"><span>NOMOS</span><span>1</span></div>
+      <div class="brand-row"><span>Omega</span><span>3</span></div>
+      <div class="brand-row"><span>Oris</span><span>2</span></div>
+      <div class="brand-row"><span>Seiko</span><span>3</span></div>
+      <div class="brand-row"><span>TAG Heuer</span><span>1</span></div>
+      <div class="brand-row"><span>Tissot</span><span>2</span></div>
+      <div class="brand-row"><span>Tudor</span><span>2</span></div>
+      <div class="brand-row"><span>Zenith</span><span>1</span></div>
+      <div class="sb-divider"></div>
+      <div class="sb-title">Collection Stats</div>
+      <div class="stat-block"><span class="stat-num">32</span><span class="stat-lbl">Total Pieces</span></div>
+      <div class="stat-block"><span class="stat-num">20</span><span class="stat-lbl">Brands</span></div>
+      <div class="stat-block"><span class="stat-num">6</span><span class="stat-lbl">Categories</span></div>
+      <div class="stat-block"><span class="stat-num">24</span><span class="stat-lbl">Automatics</span></div>
+      <div class="sb-divider"></div>
+      <div class="sb-title">Need Help?</div>
+      <div class="sb-help"><p>Not sure where to start? Our team can guide you to the right timepiece.</p><a href="about.html" class="sb-help-link">→ Book a consultation</a></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main style="flex:1;min-width:0">
+
+    <!-- DIVER -->
+    <div class="cat-div"><span class="cat-lbl">Diver</span><div class="cat-line"></div><span class="cat-brands">Omega · Tudor · Seiko · Oris · Doxa · Certina</span><span class="cat-cnt">6 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/Omega-Seamaster-Diver-300M.jpg" alt="Omega Seamaster Diver 300M"></div><div class="cbody"><div class="cbrand">Omega</div><div class="cname">Seamaster Diver 300M</div><div class="cref">Ref. 210.30.42.20.03.001</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹6,38,200</div><a class="vbtn" href="https://www.omegawatches.com/watch-omega-seamaster-diver-300m-omega-co-axial-master-chronometer-42-mm-21030422003001" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Tudor-Pelagos-FXD.jpg" alt="Tudor Pelagos FXD"></div><div class="cbody"><div class="cbrand">Tudor</div><div class="cname">Pelagos FXD</div><div class="cref">Ref. M25707KN-0001</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">500m WR</span></div><div class="cfoot"><div class="cprice">₹3,99,000</div><a class="vbtn" href="https://www.tudorwatch.com/en/watches/pelagos-fxd/m25707kn-0001" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Seiko-Prospex-Marinemaster-Professional-300M.jpg" alt="Seiko Prospex Marinemaster"></div><div class="cbody"><div class="cbrand">Seiko</div><div class="cname">Prospex Marinemaster</div><div class="cref">Ref. SBDX023</div><div class="ctags"><span class="tag">44.3mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹1,22,000</div><a class="vbtn" href="https://www.seikowatches.com/global-en/products/prospex/sbdx023" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bs">Sale</span><div class="cimg"><img src="watches-images/Oris-Aquis-Date.jpg" alt="Oris Aquis Date"></div><div class="cbody"><div class="cbrand">Oris</div><div class="cname">Aquis Date</div><div class="cref">Ref. 01 733 7766 4157</div><div class="ctags"><span class="tag">41.5mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice"><s>₹1,78,500</s>₹1,59,000</div><a class="vbtn" href="https://www.oris.ch/en/watch/aquis-date/01-733-7766-4157-07-8-21-05peb" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Doxa SUB 300 Professional.jpg" alt="Doxa SUB 300 Professional"></div><div class="cbody"><div class="cbrand">Doxa</div><div class="cname">SUB 300 Professional</div><div class="cref">Ref. 821.10.351.10</div><div class="ctags"><span class="tag">42.5mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹1,42,000</div><a class="vbtn" href="https://doxawatches.com/collections/sub-300/products/sub-300-professional" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Certina DS Action Diver.jpg" alt="Certina DS Action Diver"></div><div class="cbody"><div class="cbrand">Certina</div><div class="cname">DS Action Diver</div><div class="cref">Ref. C032.407.11.051.00</div><div class="ctags"><span class="tag">43mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹64,500</div><a class="vbtn" href="https://www.certina.com/en/watches/ds-action/ds-action-diver-c032-407-11-051-00.html" target="_blank">View</a></div></div></div>
+    </div>
+
+    <!-- PILOT -->
+    <div class="cat-div"><span class="cat-lbl">Pilot / Field</span><div class="cat-line"></div><span class="cat-brands">IWC · Breitling · Hamilton · Longines · Laco</span><span class="cat-cnt">5 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/IWC Pilot's Watch Mark XX.jpg" alt="IWC Pilot Mark XX"></div><div class="cbody"><div class="cbrand">IWC</div><div class="cname">Pilot's Watch Mark XX</div><div class="cref">Ref. IW328201</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">Anti-Magnetic</span></div><div class="cfoot"><div class="cprice">₹11,20,000</div><a class="vbtn" href="https://www.iwc.com/en/watch-collections/pilot-watches/iw328201-pilots-watch-mark-xx.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Breitling Navitimer B01 Chronograph.jpg" alt="Breitling Navitimer B01"></div><div class="cbody"><div class="cbrand">Breitling</div><div class="cname">Navitimer B01 Chronograph</div><div class="cref">Ref. AB0138241G1P1</div><div class="ctags"><span class="tag">43mm</span><span class="tag">Automatic</span><span class="tag">Slide Rule</span></div><div class="cfoot"><div class="cprice">₹7,48,000</div><a class="vbtn" href="https://www.breitling.com/en/watches/navitimer/navitimer-b01-chronograph-43/AB0138241G1P1/" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Hamilton Khaki Field Automatic.jpg" alt="Hamilton Khaki Field"></div><div class="cbody"><div class="cbrand">Hamilton</div><div class="cname">Khaki Field Automatic</div><div class="cref">Ref. H70455163</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">100m WR</span></div><div class="cfoot"><div class="cprice">₹47,900</div><a class="vbtn" href="https://www.hamiltonwatch.com/en-in/h70455163-khaki-field-auto.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Longines Spirit.jpg" alt="Longines Spirit"></div><div class="cbody"><div class="cbrand">Longines</div><div class="cname">Spirit</div><div class="cref">Ref. L3.810.4.93.6</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">100m WR</span></div><div class="cfoot"><div class="cprice">₹2,98,000</div><a class="vbtn" href="https://www.longines.com/en-in/watch-spirit-l3-810-4-93-6" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Laco Aachen Pilot.jpg" alt="Laco Aachen Pilot"></div><div class="cbody"><div class="cbrand">Laco</div><div class="cname">Aachen Pilot</div><div class="cref">Ref. 862106</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">German Made</span></div><div class="cfoot"><div class="cprice">₹74,500</div><a class="vbtn" href="https://www.laco.de/en/watches/pilot-watches/aachen/862106" target="_blank">View</a></div></div></div>
+    </div>
+
+    <!-- DRESS -->
+    <div class="cat-div"><span class="cat-lbl">Dress</span><div class="cat-line"></div><span class="cat-brands">Grand Seiko · NOMOS · Omega · Longines · Junghans · FC</span><span class="cat-cnt">6 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/Grand Seiko Elegance Collection.jpg" alt="Grand Seiko Elegance"></div><div class="cbody"><div class="cbrand">Grand Seiko</div><div class="cname">Elegance Collection</div><div class="cref">Ref. SBGW231</div><div class="ctags"><span class="tag">38mm</span><span class="tag">Manual Wind</span><span class="tag">Zaratsu Polish</span></div><div class="cfoot"><div class="cprice">₹4,52,000</div><a class="vbtn" href="https://www.grand-seiko.com/global-en/collections/sbgw231" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Nomos Tangente 38.jpg" alt="NOMOS Tangente 38"></div><div class="cbody"><div class="cbrand">NOMOS</div><div class="cname">Tangente 38</div><div class="cref">Ref. 101</div><div class="ctags"><span class="tag">38mm</span><span class="tag">Manual Wind</span><span class="tag">Bauhaus</span></div><div class="cfoot"><div class="cprice">₹2,08,000</div><a class="vbtn" href="https://nomos-glashuette.com/en/watches/tangente/101-tangente" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Omega De Ville Prestige.jpg" alt="Omega De Ville Prestige"></div><div class="cbody"><div class="cbrand">Omega</div><div class="cname">De Ville Prestige Co-Axial</div><div class="cref">Ref. 424.13.40.20.02.002</div><div class="ctags"><span class="tag">39.5mm</span><span class="tag">Automatic</span><span class="tag">Co-Axial</span></div><div class="cfoot"><div class="cprice">₹4,18,500</div><a class="vbtn" href="https://www.omegawatches.com/watch-omega-de-ville-prestige-co-axial-39-5-mm-42413402002002" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Longines Master Collection.jpg" alt="Longines Master Collection"></div><div class="cbody"><div class="cbrand">Longines</div><div class="cname">Master Collection</div><div class="cref">Ref. L2.793.4.71.6</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">Moon Phase</span></div><div class="cfoot"><div class="cprice">₹2,58,000</div><a class="vbtn" href="https://www.longines.com/en-in/watch-the-longines-master-collection-l2-793-4-71-6" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bs">Sale</span><div class="cimg"><img src="watches-images/Junghans Max Bill Automatic.jpg" alt="Junghans Max Bill Automatic"></div><div class="cbody"><div class="cbrand">Junghans</div><div class="cname">Max Bill Automatic</div><div class="cref">Ref. 027/3501.00</div><div class="ctags"><span class="tag">38mm</span><span class="tag">Automatic</span><span class="tag">Bauhaus</span></div><div class="cfoot"><div class="cprice"><s>₹91,000</s>₹79,500</div><a class="vbtn" href="https://www.junghans.de/en/watches/max-bill/max-bill-automatic/027-3501-00" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Frederique Constant Classics Index Automatic.jpg" alt="Frederique Constant Classics Index Auto"></div><div class="cbody"><div class="cbrand">Frederique Constant</div><div class="cname">Classics Index Auto</div><div class="cref">Ref. FC-303NN5B6</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">Swiss Made</span></div><div class="cfoot"><div class="cprice">₹67,500</div><a class="vbtn" href="https://www.frederique-constant.com/en/classics/classics-index-automatic/FC-303NN5B6.html" target="_blank">View</a></div></div></div>
+    </div>
+
+    <!-- CHRONOGRAPH -->
+    <div class="cat-div"><span class="cat-lbl">Chronograph</span><div class="cat-line"></div><span class="cat-brands">Omega · Zenith · TAG Heuer · Hamilton · Seiko · Tissot</span><span class="cat-cnt">6 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/Omega Speedmaster Moonwatch.jpg" alt="Omega Speedmaster Moonwatch"></div><div class="cbody"><div class="cbrand">Omega</div><div class="cname">Speedmaster Moonwatch</div><div class="cref">Ref. 310.30.42.50.01.001</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Manual Wind</span><span class="tag">Co-Axial</span></div><div class="cfoot"><div class="cprice">₹5,46,000</div><a class="vbtn" href="https://www.omegawatches.com/watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Zenith El Primero.jpg" alt="Zenith El Primero"></div><div class="cbody"><div class="cbrand">Zenith</div><div class="cname">El Primero 36,000 VpH</div><div class="cref">Ref. 03.2040.400/69.C494</div><div class="ctags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">10Hz Beat</span></div><div class="cfoot"><div class="cprice">₹5,18,000</div><a class="vbtn" href="https://www.zenith-watches.com/en_en/watches/el-primero/el-primero-36-000-vph-03-2040-400-69-c494" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/TAG Heuer Carrera.jpg" alt="TAG Heuer Carrera Chronograph"></div><div class="cbody"><div class="cbrand">TAG Heuer</div><div class="cname">Carrera Chronograph</div><div class="cref">Ref. CBN2A1B.BA0643</div><div class="ctags"><span class="tag">44mm</span><span class="tag">Automatic</span><span class="tag">In-House Cal.</span></div><div class="cfoot"><div class="cprice">₹8,22,000</div><a class="vbtn" href="https://www.tagheuer.com/en-in/watches/carrera/carrera-chronograph/CBN2A1B.BA0643" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Hamilton Intra-Matic.jpg" alt="Hamilton Intra-Matic Chronograph"></div><div class="cbody"><div class="cbrand">Hamilton</div><div class="cname">Intra-Matic Chronograph H</div><div class="cref">Ref. H38416711</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">Retro Styling</span></div><div class="cfoot"><div class="cprice">₹1,07,500</div><a class="vbtn" href="https://www.hamiltonwatch.com/en-in/h38416711-intra-matic-auto-chrono.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bs">Sale</span><div class="cimg"><img src="watches-images/Seiko Prospex Speedtimer Solar.jpg" alt="Seiko Speedtimer Solar"></div><div class="cbody"><div class="cbrand">Seiko</div><div class="cname">Prospex Speedtimer Solar</div><div class="cref">Ref. SSC813P1</div><div class="ctags"><span class="tag">44mm</span><span class="tag">Solar Quartz</span><span class="tag">100m WR</span></div><div class="cfoot"><div class="cprice"><s>₹58,000</s>₹51,500</div><a class="vbtn" href="https://www.seikowatches.com/global-en/products/prospex/ssc813p1" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Tissot PR516 Chronograph.jpg" alt="Tissot PR 516 Chronograph"></div><div class="cbody"><div class="cbrand">Tissot</div><div class="cname">PR 516 Chronograph</div><div class="cref">Ref. T149.417.16.032.00</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Quartz</span><span class="tag">Heritage</span></div><div class="cfoot"><div class="cprice">₹33,995</div><a class="vbtn" href="https://www.tissotwatches.com/en-in/t1494176103200.html" target="_blank">View</a></div></div></div>
+    </div>
+
+    <!-- GMT -->
+    <div class="cat-div"><span class="cat-lbl">GMT</span><div class="cat-line"></div><span class="cat-brands">Tudor · Longines · Oris · Hamilton · Certina</span><span class="cat-cnt">5 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/Tudor Black Bay GMT.jpg" alt="Tudor Black Bay GMT"></div><div class="cbody"><div class="cbrand">Tudor</div><div class="cname">Black Bay GMT</div><div class="cref">Ref. M79830RB-0001</div><div class="ctags"><span class="tag">41mm</span><span class="tag">Automatic</span><span class="tag">GMT</span></div><div class="cfoot"><div class="cprice">₹3,12,400</div><a class="vbtn" href="https://www.tudorwatch.com/en/watches/black-bay-gmt/m79830rb-0001" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Longines HydroConquest GMT.jpg" alt="Longines HydroConquest GMT"></div><div class="cbody"><div class="cbrand">Longines</div><div class="cname">HydroConquest GMT</div><div class="cref">Ref. L3.790.4.96.9</div><div class="ctags"><span class="tag">41mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹2,18,000</div><a class="vbtn" href="https://www.longines.com/en-in/watch-hydroconquest-gmt-l3-790-4-96-9" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Oris Aquis GMT Date.jpg" alt="Oris Aquis GMT Date"></div><div class="cbody"><div class="cbrand">Oris</div><div class="cname">Aquis GMT Date</div><div class="cref">Ref. 01 798 7754 4157</div><div class="ctags"><span class="tag">43.5mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span></div><div class="cfoot"><div class="cprice">₹1,94,500</div><a class="vbtn" href="https://www.oris.ch/en/watch/aquis-gmt-date/01-798-7754-4157-07-8-22-05peb" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Hamilton Khaki Aviation Converter.jpg" alt="Hamilton Khaki Aviation Converter"></div><div class="cbody"><div class="cbrand">Hamilton</div><div class="cname">Khaki Aviation Converter</div><div class="cref">Ref. H76755730</div><div class="ctags"><span class="tag">41mm</span><span class="tag">Automatic</span><span class="tag">Dual Time</span></div><div class="cfoot"><div class="cprice">₹79,900</div><a class="vbtn" href="https://www.hamiltonwatch.com/en-in/h76755730-khaki-aviation-converter-auto.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Certina DS Action GMT.jpg" alt="Certina DS Action GMT"></div><div class="cbody"><div class="cbrand">Certina</div><div class="cname">DS Action GMT</div><div class="cref">Ref. C032.429.11.051.00</div><div class="ctags"><span class="tag">43mm</span><span class="tag">Automatic</span><span class="tag">GMT</span></div><div class="cfoot"><div class="cprice">₹71,500</div><a class="vbtn" href="https://www.certina.com/en/watches/ds-action/ds-action-gmt-c032-429-11-051-00.html" target="_blank">View</a></div></div></div>
+    </div>
+
+    <!-- CASUAL -->
+    <div class="cat-div"><span class="cat-lbl">Casual</span><div class="cat-line"></div><span class="cat-brands">Hamilton · Tissot · Bulova · Formex</span><span class="cat-cnt">4 watches</span></div>
+    <div class="wgrid">
+      <div class="card"><span class="badge bb">Best Seller</span><div class="cimg"><img src="watches-images/Hamilton Jazzmaster Open Heart.jpg" alt="Hamilton Jazzmaster Open Heart"></div><div class="cbody"><div class="cbrand">Hamilton</div><div class="cname">Jazzmaster Open Heart</div><div class="cref">Ref. H32565155</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">Open Heart</span></div><div class="cfoot"><div class="cprice">₹87,900</div><a class="vbtn" href="https://www.hamiltonwatch.com/en-in/h32565155-jazzmaster-open-heart-auto.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><div class="cimg"><img src="watches-images/Tissot Gentleman Powermatic 80.jpg" alt="Tissot Gentleman Powermatic 80"></div><div class="cbody"><div class="cbrand">Tissot</div><div class="cname">Gentleman Powermatic 80</div><div class="cref">Ref. T127.407.16.041.01</div><div class="ctags"><span class="tag">40mm</span><span class="tag">Automatic</span><span class="tag">80hr Reserve</span></div><div class="cfoot"><div class="cprice">₹45,995</div><a class="vbtn" href="https://www.tissotwatches.com/en-in/t1274071604101.html" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bn">New</span><div class="cimg"><img src="watches-images/Bulova Lunar Pilot Chronograph.jpg" alt="Bulova Lunar Pilot Chronograph"></div><div class="cbody"><div class="cbrand">Bulova</div><div class="cname">Lunar Pilot Chronograph</div><div class="cref">Ref. 96B251</div><div class="ctags"><span class="tag">45mm</span><span class="tag">Quartz</span><span class="tag">NASA Heritage</span></div><div class="cfoot"><div class="cprice">₹24,995</div><a class="vbtn" href="https://www.bulova.com/en_us/96b251" target="_blank">View</a></div></div></div>
+
+      <div class="card"><span class="badge bs">Sale</span><div class="cimg"><img src="watches-images/Formex Essence 39.jpg" alt="Formex Essence ThirtyNine"></div><div class="cbody"><div class="cbrand">Formex</div><div class="cname">Essence ThirtyNine</div><div class="cref">Ref. 0330.1.6300.100</div><div class="ctags"><span class="tag">39mm</span><span class="tag">Automatic</span><span class="tag">Swiss Made</span></div><div class="cfoot"><div class="cprice"><s>₹1,05,000</s>₹92,500</div><a class="vbtn" href="https://formex.ch/collections/essence/products/essence-thirtynine-automatik-3300-1-6300-100" target="_blank">View</a></div></div></div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="fcol"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="fcol"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 Calibre. All rights reserved.</p>
+    <div class="flogo">Calibr<em>e</em></div>
+    <p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p>
+  </div>
+</footer>
+
+<script>
+var btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');
+btn.addEventListener('click',function(){btn.classList.toggle('open');menu.classList.toggle('open')});
+</script>
+</body>
+</html>

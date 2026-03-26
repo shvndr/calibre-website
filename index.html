@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — Fine Timepieces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root{
+  --ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;
+  --bronze:#b8954a;--bronze-lt:#d4ae6e;
+  --bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.07);
+  --cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;
+  --px:1rem;--nav-h:3.75rem;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* ── ANNOUNCE ── */
+.announce{
+  background:var(--navy);border-bottom:1px solid var(--bronze-dim);
+  text-align:center;padding:.5rem var(--px);
+  font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--bronze-dim);
+  height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--px);
+}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-family:var(--sans);font-weight:500}
+.nav-links a:hover,.nav-links a.on{color:var(--cream)}
+.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{
+  display:none;flex-direction:column;
+  position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;
+  background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);
+  padding:1.5rem var(--px);gap:1rem;z-index:99;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}
+.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:92vh;display:flex;align-items:center;
+  background:linear-gradient(135deg,#050810 0%,#0c1525 50%,#080f1a 100%);
+  overflow:hidden;padding:4rem var(--px) 3rem;
+}
+/* animated gold ring decoration */
+.hero::before{
+  content:'';position:absolute;top:-20%;right:-10%;
+  width:min(600px,90vw);height:min(600px,90vw);border-radius:50%;
+  border:1px solid rgba(184,149,74,.08);
+  box-shadow:0 0 0 40px rgba(184,149,74,.04),0 0 0 80px rgba(184,149,74,.025);
+  pointer-events:none;animation:pulse 6s ease-in-out infinite;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-30%;left:-15%;
+  width:min(400px,70vw);height:min(400px,70vw);border-radius:50%;
+  background:radial-gradient(circle,rgba(184,149,74,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+.hero-inner{position:relative;z-index:2;max-width:100%;width:100%}
+.hero-eyebrow{
+  font-family:var(--sans);font-size:.5625rem;letter-spacing:.52em;text-transform:uppercase;
+  color:var(--bronze);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;
+}
+.hero-eyebrow::before{content:'';display:block;width:2.5rem;height:1px;background:var(--bronze)}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2.4rem,9vw,5.5rem);
+  font-weight:300;line-height:1.05;letter-spacing:.02em;
+  margin-bottom:1.75rem;color:var(--cream);
+}
+.hero h1 em{font-style:italic;color:var(--bronze)}
+.hero-sub{
+  color:var(--slate-mid);font-size:clamp(.875rem,2vw,1rem);
+  max-width:32rem;line-height:1.8;margin-bottom:2.5rem;font-weight:300;
+}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  background:var(--bronze);color:var(--ink);
+  font-family:var(--sans);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
+  padding:.875rem 1.75rem;cursor:pointer;transition:background .2s;border:none;display:inline-block;
+}
+.btn-primary:hover{background:var(--bronze-lt)}
+.btn-ghost{
+  background:transparent;color:var(--cream);
+  font-family:var(--sans);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
+  padding:.875rem 1.75rem;cursor:pointer;transition:all .2s;
+  border:1px solid rgba(237,232,223,.2);display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--bronze);color:var(--bronze)}
+
+/* hero stats row */
+.hero-stats{
+  display:flex;gap:2rem;margin-top:3.5rem;padding-top:2rem;
+  border-top:1px solid var(--bronze-dim);flex-wrap:wrap;
+}
+.hstat b{display:block;font-family:var(--serif);font-size:2rem;font-weight:300;font-style:italic;color:var(--bronze-lt);line-height:1}
+.hstat small{font-size:.5625rem;letter-spacing:.36em;text-transform:uppercase;color:var(--slate)}
+
+/* hero watch image floated right (≥768) */
+.hero-img-wrap{display:none;position:absolute;right:0;top:0;bottom:0;width:45%;z-index:1}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55;mix-blend-mode:luminosity}
+.hero-img-wrap::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:50%;
+  background:linear-gradient(to right,var(--ink),transparent);z-index:2;
+}
+
+/* ── MARQUEE STRIP ── */
+.marquee-wrap{
+  border-top:1px solid var(--bronze-dim);border-bottom:1px solid var(--bronze-dim);
+  background:var(--navy);padding:.625rem 0;overflow:hidden;
+}
+.marquee-track{
+  display:flex;gap:3rem;width:max-content;
+  animation:marquee 28s linear infinite;
+}
+.marquee-track span{
+  font-size:.5625rem;letter-spacing:.52em;text-transform:uppercase;
+  color:var(--slate);white-space:nowrap;font-family:var(--sans);font-weight:500;
+}
+.marquee-track em{color:var(--bronze);font-style:normal;margin:0 .5rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION COMMONS ── */
+section{padding:4rem var(--px)}
+.section-label{
+  font-family:var(--sans);font-size:.5625rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--bronze);margin-bottom:.875rem;display:flex;align-items:center;gap:.75rem;
+}
+.section-label::before{content:'';display:block;width:1.5rem;height:1px;background:var(--bronze)}
+.section-title{font-family:var(--serif);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:.625rem}
+.section-sub{color:var(--slate-mid);font-size:.9375rem;max-width:36rem;line-height:1.75;font-weight:300;margin-bottom:2.5rem}
+.section-head{margin-bottom:2.5rem}
+
+/* ── FEATURED CATEGORIES ── */
+.cats{background:var(--ink)}
+.cat-grid{
+  display:grid;grid-template-columns:1fr;gap:1px;
+  background:var(--bronze-dim);border:1px solid var(--bronze-dim);
+}
+.cat-card{
+  background:var(--navy);position:relative;overflow:hidden;cursor:pointer;
+  aspect-ratio:16/9;display:flex;align-items:flex-end;
+  transition:background .3s;
+}
+.cat-card img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:.35;transition:opacity .4s,transform .5s;
+  mix-blend-mode:luminosity;filter:brightness(.8) contrast(1.1);
+}
+.cat-card:hover img{opacity:.5;transform:scale(1.04)}
+.cat-card-body{
+  position:relative;z-index:2;padding:1.25rem;width:100%;
+  background:linear-gradient(to top,rgba(8,12,20,.9) 0%,transparent 100%);
+}
+.cat-card-title{font-family:var(--serif);font-size:1.375rem;font-weight:300;font-style:italic;color:var(--cream);margin-bottom:.25rem}
+.cat-card-count{font-size:.5625rem;letter-spacing:.38em;text-transform:uppercase;color:var(--bronze)}
+.cat-card-arrow{
+  position:absolute;top:1rem;right:1rem;z-index:3;
+  width:2rem;height:2rem;border:1px solid rgba(184,149,74,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--bronze);font-size:.75rem;
+  transition:background .2s,border-color .2s;
+}
+.cat-card:hover .cat-card-arrow{background:var(--bronze);color:var(--ink);border-color:var(--bronze)}
+
+/* ── FEATURED WATCHES ── */
+.featured{background:var(--navy)}
+.feat-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+.feat-card{
+  background:var(--ink);border:1px solid var(--bronze-dim);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;cursor:pointer;
+}
+.feat-card:hover{border-color:rgba(184,149,74,.45);transform:translateY(-3px)}
+.feat-img{background:var(--navy-img);aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--bronze-dim)}
+.feat-img img{width:100%;height:100%;object-fit:contain;padding:1.25rem;transition:transform .4s}
+.feat-card:hover .feat-img img{transform:scale(1.06)}
+.feat-badge{position:absolute;top:.875rem;left:.875rem;z-index:2;font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;padding:.25rem .625rem;font-family:var(--sans);font-weight:500}
+.badge-n{background:var(--bronze);color:var(--ink)}
+.badge-b{background:var(--navy-mid);border:1px solid var(--bronze);color:var(--bronze-lt)}
+.feat-body{padding:1.125rem;display:flex;flex-direction:column;flex:1}
+.feat-brand{font-size:.5rem;letter-spacing:.46em;text-transform:uppercase;color:var(--bronze);margin-bottom:.3rem;font-family:var(--sans);font-weight:500}
+.feat-name{font-family:var(--serif);font-size:1.0625rem;font-style:italic;color:var(--cream);margin-bottom:.2rem;line-height:1.3}
+.feat-ref{font-size:.5625rem;letter-spacing:.16em;color:var(--slate);margin-bottom:.75rem;font-family:var(--sans)}
+.feat-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.75rem;border-top:1px solid var(--bronze-dim)}
+.feat-price{font-family:var(--serif);font-size:1.0625rem;font-style:italic;color:var(--bronze-lt)}
+.btn-sm{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;padding:.5rem .875rem;font-weight:500;transition:background .2s;border:none;cursor:pointer;display:inline-block}
+.btn-sm:hover{background:var(--bronze-lt)}
+
+/* ── BRAND STRIP ── */
+.brands-sec{background:var(--ink);padding:3rem var(--px)}
+.brand-strip{
+  display:flex;gap:1px;flex-wrap:wrap;
+  border:1px solid var(--bronze-dim);background:var(--bronze-dim);margin-top:2rem;
+}
+.brand-tile{
+  flex:1;min-width:8rem;background:var(--navy);
+  padding:1.25rem .75rem;text-align:center;
+  font-size:.5625rem;letter-spacing:.36em;text-transform:uppercase;color:var(--slate);
+  font-family:var(--sans);font-weight:500;transition:background .2s,color .2s;cursor:pointer;
+}
+.brand-tile:hover{background:var(--navy-mid);color:var(--bronze)}
+
+/* ── WHY US ── */
+.why{background:var(--navy)}
+.why-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:2rem}
+.why-card{
+  border:1px solid var(--bronze-dim);padding:1.75rem;
+  background:var(--ink);position:relative;overflow:hidden;
+}
+.why-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--bronze),transparent);
+}
+.why-num{font-family:var(--serif);font-size:3rem;font-weight:300;font-style:italic;color:var(--bronze-dim);line-height:1;margin-bottom:.75rem}
+.why-title{font-family:var(--serif);font-size:1.1875rem;font-style:italic;color:var(--cream);margin-bottom:.5rem}
+.why-desc{font-size:.875rem;color:var(--slate-mid);line-height:1.75;font-weight:300}
+
+/* ── EDITORIAL BANNER ── */
+.editorial{
+  background:var(--navy-mid);border-top:1px solid var(--bronze-dim);border-bottom:1px solid var(--bronze-dim);
+  padding:3.5rem var(--px);text-align:center;position:relative;overflow:hidden;
+}
+.editorial::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(500px,80vw);height:min(500px,80vw);border-radius:50%;
+  background:radial-gradient(circle,rgba(184,149,74,.06) 0%,transparent 70%);pointer-events:none;
+}
+.editorial blockquote{
+  font-family:var(--serif);font-size:clamp(1.25rem,3.5vw,2rem);
+  font-style:italic;font-weight:300;color:var(--cream);line-height:1.5;
+  max-width:42rem;margin:0 auto 1rem;position:relative;z-index:2;
+}
+.editorial cite{font-size:.5625rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);font-style:normal;font-family:var(--sans)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.foot-col h4{font-size:.5625rem;letter-spacing:.42em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-family:var(--sans);font-weight:500}
+.foot-col li{margin-bottom:.625rem}
+.foot-col a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}
+.foot-col a:hover{color:var(--cream)}
+.foot-bottom{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.foot-bottom p{font-size:.625rem;letter-spacing:.18em;color:var(--slate);font-family:var(--sans)}
+.foot-logo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.foot-logo em{color:var(--bronze);font-style:normal}
+
+/* ── RESPONSIVE ── */
+@media(min-width:480px){
+  :root{--px:1.5rem}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:768px){
+  :root{--px:2.5rem;--nav-h:4rem}
+  .hero-img-wrap{display:block}
+  .nav-right{display:flex}
+  .foot-grid{grid-template-columns:repeat(4,1fr)}
+  .foot-bottom{flex-direction:row;justify-content:space-between;text-align:left}
+}
+@media(min-width:1024px){
+  :root{--px:3rem}
+  .nav-links{display:flex}
+  .hamburger{display:none}
+  .mobile-menu{display:none!important}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .feat-grid{grid-template-columns:repeat(4,1fr)}
+  .why-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:1280px){:root{--px:4rem}}
+</style>
+</head>
+<body>
+
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="on">Home</a></li>
+    <li><a href="watches.html">Watches</a></li>
+    <li><a href="brands.html">Brands</a></li>
+    <li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="straps.html">Straps</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a>
+  </div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" class="on">Home</a>
+  <a href="watches.html">Watches</a>
+  <a href="brands.html">Brands</a>
+  <a href="new-arrivals.html">New Arrivals</a>
+  <a href="straps.html">Straps</a>
+  <a href="about.html">About</a>
+  <a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img-wrap">
+    <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=1200&q=80" alt="Fine timepiece">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Curated Horology</div>
+    <h1>Time, <em>elevated</em><br>to an art form.</h1>
+    <p class="hero-sub">Thirty-two exceptional timepieces across six disciplines — each selected for mechanical integrity, design honesty, and enduring value.</p>
+    <div class="hero-ctas">
+      <a href="watches.html" class="btn-primary">Explore Collection</a>
+      <a href="brands.html" class="btn-ghost">View Brands</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b>32</b><small>Timepieces</small></div>
+      <div class="hstat"><b>20</b><small>Brands</small></div>
+      <div class="hstat"><b>6</b><small>Categories</small></div>
+      <div class="hstat"><b>24</b><small>Automatics</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Omega <em>·</em></span><span>Tudor <em>·</em></span><span>Seiko <em>·</em></span><span>IWC <em>·</em></span><span>Hamilton <em>·</em></span><span>Longines <em>·</em></span><span>Grand Seiko <em>·</em></span><span>NOMOS <em>·</em></span><span>Breitling <em>·</em></span><span>Zenith <em>·</em></span><span>TAG Heuer <em>·</em></span><span>Oris <em>·</em></span><span>Certina <em>·</em></span><span>Doxa <em>·</em></span><span>Tissot <em>·</em></span><span>Formex <em>·</em></span>
+    <!-- duplicate for seamless loop -->
+    <span>Omega <em>·</em></span><span>Tudor <em>·</em></span><span>Seiko <em>·</em></span><span>IWC <em>·</em></span><span>Hamilton <em>·</em></span><span>Longines <em>·</em></span><span>Grand Seiko <em>·</em></span><span>NOMOS <em>·</em></span><span>Breitling <em>·</em></span><span>Zenith <em>·</em></span><span>TAG Heuer <em>·</em></span><span>Oris <em>·</em></span><span>Certina <em>·</em></span><span>Doxa <em>·</em></span><span>Tissot <em>·</em></span><span>Formex <em>·</em></span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="cats">
+  <div class="section-head">
+    <div class="section-label">Shop by Discipline</div>
+    <h2 class="section-title">Six Ways to<br><em style="font-style:italic;color:var(--bronze)">Measure Time</em></h2>
+  </div>
+  <div class="cat-grid">
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/diver watch.jpg" alt="Diver watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">Diver</div>
+        <div class="cat-card-count">6 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/pilot watch.jpg" alt="Pilot watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">Pilot / Field</div>
+        <div class="cat-card-count">5 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/dress watch.jpg" alt="Dress watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">Dress</div>
+        <div class="cat-card-count">6 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/chronograph watch.jpg" alt="Chronograph watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">Chronograph</div>
+        <div class="cat-card-count">6 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/gmt watch.jpg" alt="GMT watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">GMT</div>
+        <div class="cat-card-count">5 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+    <a href="watches.html" class="cat-card">
+      <img src="watches-images/casual watch.jpg" alt="Casual watches">
+      <div class="cat-card-body">
+        <div class="cat-card-title">Casual</div>
+        <div class="cat-card-count">4 timepieces</div>
+      </div>
+      <div class="cat-card-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured">
+  <div class="section-head">
+    <div class="section-label">Editor's Picks</div>
+    <h2 class="section-title">Standout<br><em style="font-style:italic;color:var(--bronze)">Timepieces</em></h2>
+    <p class="section-sub">The watches our team keeps coming back to — exceptional value, design, and mechanical character.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <span class="feat-badge badge-b">Best Seller</span>
+      <div class="feat-img">
+        <img src="watches-images/Omega-Seamaster-Diver-300M.jpg" alt="Omega Seamaster">
+      </div>
+      <div class="feat-body">
+        <div class="feat-brand">Omega</div>
+        <div class="feat-name">Seamaster Diver 300M</div>
+        <div class="feat-ref">Ref. 210.30.42.20.03.001</div>
+        <div class="feat-foot">
+          <div class="feat-price">₹6,38,200</div>
+          <a href="watches.html" class="btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-badge badge-b">Best Seller</span>
+      <div class="feat-img">
+        <img src="watches-images/Tudor Black Bay GMT.jpg" alt="Tudor Black Bay GMT">
+      </div>
+      <div class="feat-body">
+        <div class="feat-brand">Tudor</div>
+        <div class="feat-name">Black Bay GMT</div>
+        <div class="feat-ref">Ref. M79830RB-0001</div>
+        <div class="feat-foot">
+          <div class="feat-price">₹3,12,400</div>
+          <a href="watches.html" class="btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-badge badge-n">New</span>
+      <div class="feat-img">
+        <img src="watches-images/Nomos Tangente 38.jpg" alt="NOMOS Tangente">
+      </div>
+      <div class="feat-body">
+        <div class="feat-brand">NOMOS</div>
+        <div class="feat-name">Tangente 38</div>
+        <div class="feat-ref">Ref. 101</div>
+        <div class="feat-foot">
+          <div class="feat-price">₹2,08,000</div>
+          <a href="watches.html" class="btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-badge badge-b">Best Seller</span>
+      <div class="feat-img">
+        <img src="watches-images/Grand Seiko Elegance Collection.jpg" alt="Grand Seiko">
+      </div>
+      <div class="feat-body">
+        <div class="feat-brand">Grand Seiko</div>
+        <div class="feat-name">Elegance Collection</div>
+        <div class="feat-ref">Ref. SBGW231</div>
+        <div class="feat-foot">
+          <div class="feat-price">₹4,52,000</div>
+          <a href="watches.html" class="btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-sec">
+  <div class="section-label">Twenty Houses</div>
+  <h2 class="section-title">The Brands We<br><em style="font-style:italic;color:var(--bronze)">Trust</em></h2>
+  <div class="brand-strip">
+    <a href="brands.html" class="brand-tile">Omega</a><a href="brands.html" class="brand-tile">Tudor</a>
+    <a href="brands.html" class="brand-tile">Seiko</a><a href="brands.html" class="brand-tile">Grand Seiko</a>
+    <a href="brands.html" class="brand-tile">IWC</a><a href="brands.html" class="brand-tile">Breitling</a>
+    <a href="brands.html" class="brand-tile">Hamilton</a><a href="brands.html" class="brand-tile">Longines</a>
+    <a href="brands.html" class="brand-tile">NOMOS</a><a href="brands.html" class="brand-tile">Zenith</a>
+    <a href="brands.html" class="brand-tile">TAG Heuer</a><a href="brands.html" class="brand-tile">Oris</a>
+    <a href="brands.html" class="brand-tile">Certina</a><a href="brands.html" class="brand-tile">Doxa</a>
+    <a href="brands.html" class="brand-tile">Tissot</a><a href="brands.html" class="brand-tile">Junghans</a>
+    <a href="brands.html" class="brand-tile">Formex</a><a href="brands.html" class="brand-tile">Fr. Constant</a>
+    <a href="brands.html" class="brand-tile">Bulova</a><a href="brands.html" class="brand-tile">Laco</a>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="section-head">
+    <div class="section-label">Why Calibre</div>
+    <h2 class="section-title">The Calibre<br><em style="font-style:italic;color:var(--bronze)">Promise</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-num">01</div><div class="why-title">Authenticated Stock</div><div class="why-desc">Every piece is verified for authenticity before reaching our shelves. No grey-market uncertainty.</div></div>
+    <div class="why-card"><div class="why-num">02</div><div class="why-title">2-Year Service Cover</div><div class="why-desc">All purchases include a two-year service warranty backed by authorised technicians.</div></div>
+    <div class="why-card"><div class="why-num">03</div><div class="why-title">Expert Curation</div><div class="why-desc">Our selection is limited and deliberate — chosen for mechanical merit, not popularity alone.</div></div>
+    <div class="why-card"><div class="why-num">04</div><div class="why-title">White-Glove Delivery</div><div class="why-desc">Complimentary insured shipping on orders above ₹1,50,000 with dedicated tracking.</div></div>
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<div class="editorial">
+  <blockquote>"A watch is not merely an instrument for measuring time — it is a declaration of what you value."</blockquote>
+  <cite>— Calibre, Established 2024</cite>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="foot-col"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="foot-col"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="foot-col"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 Calibre. All rights reserved.</p>
+    <div class="foot-logo">Calibr<em>e</em></div>
+    <p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p>
+  </div>
+</footer>
+
+<script>
+var btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');
+btn.addEventListener('click',function(){btn.classList.toggle('open');menu.classList.toggle('open')});
+</script>
+</body>
+</html>

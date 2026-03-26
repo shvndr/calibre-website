@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — Brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;--bronze:#b8954a;--bronze-lt:#d4ae6e;--bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.06);--cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;--px:1rem;--nav-h:3.75rem;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans','Helvetica Neue',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-style:none}
+
+.announce{background:var(--navy);border-bottom:1px solid var(--bronze-dim);text-align:center;padding:.5rem var(--px);font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bronze-dim);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--cream)}.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);padding:1.5rem var(--px);gap:1rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}
+.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* PAGE HEADER */
+.page-hdr{background:linear-gradient(to bottom,var(--navy),var(--ink));border-bottom:1px solid var(--bronze-dim);padding:2.5rem var(--px) 2rem;position:relative;overflow:hidden}
+.page-hdr::after{content:'';position:absolute;top:-60%;right:-10%;width:min(500px,80vw);height:min(500px,80vw);border-radius:50%;background:radial-gradient(circle,rgba(184,149,74,.05) 0%,transparent 70%);pointer-events:none}
+.breadcrumb{font-size:.5625rem;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);margin-bottom:1rem;font-family:var(--sans);font-weight:500}
+.breadcrumb em{color:var(--bronze);font-style:normal}
+.page-hdr h1{font-family:var(--serif);font-size:clamp(1.75rem,5vw,3rem);font-weight:300;font-style:italic;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hdr p{color:var(--slate-mid);font-size:.9375rem;max-width:36rem;line-height:1.75;font-weight:300}
+
+/* BRAND GRID */
+.brands-wrap{padding:2.5rem var(--px) 4rem}
+
+/* Tier heading */
+.tier-head{display:flex;align-items:center;gap:.75rem;margin:2.5rem 0 1.5rem}
+.tier-head:first-of-type{margin-top:0}
+.tier-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;font-weight:500}
+.tier-line{flex:1;height:1px;background:var(--bronze-dim)}
+.tier-desc{font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);white-space:nowrap;font-family:var(--sans)}
+
+/* Brand cards */
+.brand-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--bronze-dim);border:1px solid var(--bronze-dim);margin-bottom:1px}
+.brand-card{
+  background:var(--navy);display:flex;flex-direction:column;overflow:hidden;
+  transition:background .3s;cursor:pointer;position:relative;
+}
+.brand-card:hover{background:var(--navy-mid)}
+.bc-img{aspect-ratio:16/7;overflow:hidden;background:var(--navy-img);border-bottom:1px solid var(--bronze-dim)}
+.bc-img img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.5;mix-blend-mode:luminosity;filter:brightness(.9) contrast(1.1);transition:opacity .4s,transform .5s}
+.brand-card:hover .bc-img img{opacity:.7;transform:scale(1.03)}
+.bc-body{padding:1.25rem}
+.bc-country{font-family:var(--sans);font-size:.4375rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:.375rem;font-weight:500}
+.bc-name{font-family:var(--serif);font-size:1.25rem;font-style:italic;font-weight:300;color:var(--cream);margin-bottom:.5rem}
+.bc-desc{font-size:.8125rem;color:var(--slate-mid);line-height:1.7;font-weight:300;margin-bottom:.875rem}
+.bc-tags{display:flex;gap:.375rem;flex-wrap:wrap}
+.bc-tag{font-family:var(--sans);font-size:.4375rem;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px solid var(--bronze-dim);padding:.25rem .5rem;font-weight:500}
+.bc-arrow{position:absolute;top:1rem;right:1rem;width:2rem;height:2rem;border:1px solid rgba(184,149,74,.25);display:flex;align-items:center;justify-content:center;color:var(--bronze);font-size:.75rem;transition:background .2s,border-color .2s}
+.brand-card:hover .bc-arrow{background:var(--bronze);color:var(--ink);border-color:var(--bronze)}
+
+/* compact brand tiles for smaller brands */
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bronze-dim);border:1px solid var(--bronze-dim)}
+.mini-tile{background:var(--navy);padding:1.25rem;transition:background .2s;cursor:pointer}
+.mini-tile:hover{background:var(--navy-mid)}
+.mt-country{font-family:var(--sans);font-size:.4375rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:.3rem;font-weight:500}
+.mt-name{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--cream);margin-bottom:.375rem}
+.mt-desc{font-size:.75rem;color:var(--slate-mid);line-height:1.65;font-weight:300}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.fcol h4{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+.fcol li{margin-bottom:.625rem}.fcol a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.fbot p{font-family:var(--sans);font-size:.625rem;letter-spacing:.18em;color:var(--slate)}
+.flogo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.flogo em{color:var(--bronze);font-style:normal}
+
+@media(min-width:480px){:root{--px:1.5rem}.brand-grid{grid-template-columns:repeat(2,1fr)}.mini-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){:root{--px:2.5rem;--nav-h:4rem}.nav-right{display:flex}.fgrid{grid-template-columns:repeat(4,1fr)}.fbot{flex-direction:row;justify-content:space-between;text-align:left}.brand-grid{grid-template-columns:repeat(3,1fr)}.mini-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){:root{--px:3rem}.nav-links{display:flex}.hamburger{display:none}.mobile-menu{display:none!important}}
+@media(min-width:1280px){:root{--px:4rem}.brand-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="watches.html">Watches</a></li>
+    <li><a href="brands.html" class="on">Brands</a></li><li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="straps.html">Straps</a></li><li><a href="about.html">About</a></li><li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="watches.html">Watches</a><a href="brands.html" class="on">Brands</a>
+  <a href="new-arrivals.html">New Arrivals</a><a href="straps.html">Straps</a><a href="about.html">About</a><a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<div class="page-hdr">
+  <div class="breadcrumb">Calibre &nbsp;/&nbsp; <em>Brands</em></div>
+  <h1>Twenty Houses<br>of Fine Watchmaking</h1>
+  <p>From Swiss legends to independent German ateliers — every brand is selected for a distinct reason.</p>
+</div>
+
+<div class="brands-wrap">
+
+  <!-- PRESTIGE TIER -->
+  <div class="tier-head"><span class="tier-lbl">Prestige</span><div class="tier-line"></div><span class="tier-desc">Flagship Houses</span></div>
+  <div class="brand-grid">
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/omega logo.jpg" alt="Omega"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1848</div><div class="bc-name">Omega</div><div class="bc-desc">Co-Axial master chronometers at the pinnacle of Swiss precision. The Seamaster and Speedmaster define their categories.</div><div class="bc-tags"><span class="bc-tag">3 Watches</span><span class="bc-tag">Co-Axial</span><span class="bc-tag">METAS Certified</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/iwc logo.jpg" alt="IWC"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1868</div><div class="bc-name">IWC Schaffhausen</div><div class="bc-desc">Engineering-led Swiss manufacture with a legendary Pilot's watch heritage. Built for function, refined to perfection.</div><div class="bc-tags"><span class="bc-tag">1 Watch</span><span class="bc-tag">Pilot Heritage</span><span class="bc-tag">Anti-Magnetic</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/b95927d07ca630cf0aacf8bea6bc9733.jpg" alt="Breitling"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1884</div><div class="bc-name">Breitling</div><div class="bc-desc">Instruments for professionals — chronographs built for pilots, divers, and explorers since the 19th century.</div><div class="bc-tags"><span class="bc-tag">2 Watches</span><span class="bc-tag">Chronograph</span><span class="bc-tag">B01 In-House</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/zenith logo.jpg" alt="Zenith"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1865</div><div class="bc-name">Zenith</div><div class="bc-desc">Creators of the legendary El Primero — the world's first automatic chronograph — still beating at 36,000vph today.</div><div class="bc-tags"><span class="bc-tag">1 Watch</span><span class="bc-tag">El Primero</span><span class="bc-tag">10Hz Calibre</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/tag heuer logo.jpg" alt="TAG Heuer"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1860</div><div class="bc-name">TAG Heuer</div><div class="bc-desc">Racing precision fused with Swiss craft. The Carrera has timed Formula 1 since 1963 and remains its definitive icon.</div><div class="bc-tags"><span class="bc-tag">1 Watch</span><span class="bc-tag">Carrera</span><span class="bc-tag">Motorsport Heritage</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/grand seiko logo.jpg" alt="Grand Seiko"></div>
+      <div class="bc-body"><div class="bc-country">Japan · Est. 1960</div><div class="bc-name">Grand Seiko</div><div class="bc-desc">Zaratsu-polished cases, nature-inspired dials, and hand-assembled movements that rival anything from Geneva.</div><div class="bc-tags"><span class="bc-tag">1 Watch</span><span class="bc-tag">Zaratsu Polish</span><span class="bc-tag">Spring Drive</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- SPORT TIER -->
+  <div class="tier-head"><span class="tier-lbl">Sport &amp; Diver</span><div class="tier-line"></div><span class="tier-desc">Water-Rated Specialists</span></div>
+  <div class="brand-grid">
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/tudor logo.jpg" alt="Tudor"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1926</div><div class="bc-name">Tudor</div><div class="bc-desc">Rolex's sibling — in-house movements, vintage character, and dive credentials at an approachable price.</div><div class="bc-tags"><span class="bc-tag">2 Watches</span><span class="bc-tag">Diver</span><span class="bc-tag">GMT</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/seiko logo.jpg" alt="Seiko"></div>
+      <div class="bc-body"><div class="bc-country">Japan · Est. 1881</div><div class="bc-name">Seiko</div><div class="bc-desc">The democratising force in fine watchmaking. Prospex divers and chronographs deliver relentless value and quality.</div><div class="bc-tags"><span class="bc-tag">3 Watches</span><span class="bc-tag">Prospex</span><span class="bc-tag">Marinemaster</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/oris logo.jpg" alt="Oris"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1904</div><div class="bc-name">Oris</div><div class="bc-desc">Fully independent and fiercely mechanical. Aquis divers punch above their weight in quality and ocean credentials.</div><div class="bc-tags"><span class="bc-tag">2 Watches</span><span class="bc-tag">Aquis</span><span class="bc-tag">GMT</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+    <a href="watches.html" class="brand-card">
+      <div class="bc-img"><img src="watches-images/doxa logo.jpg" alt="Doxa"></div>
+      <div class="bc-body"><div class="bc-country">Switzerland · Est. 1889</div><div class="bc-name">Doxa</div><div class="bc-desc">The original diver's watch — Jacques Cousteau approved. The SUB 300's orange dial remains an icon of the deep.</div><div class="bc-tags"><span class="bc-tag">1 Watch</span><span class="bc-tag">SUB 300</span><span class="bc-tag">Dive Heritage</span></div></div>
+      <div class="bc-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- ACCESSIBLE TIER -->
+  <div class="tier-head"><span class="tier-lbl">Accessible Swiss</span><div class="tier-line"></div><span class="tier-desc">Swiss Quality · Honest Pricing</span></div>
+  <div class="mini-grid">
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 1892</div><div class="mt-name">Hamilton</div><div class="mt-desc">American spirit, Swiss precision. Four watches across field, aviation, jazz, and GMT disciplines.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 1853</div><div class="mt-name">Longines</div><div class="mt-desc">Elegance and sport from Le Chaux-de-Fonds. Three models spanning Spirit, HydroConquest, and Master.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 1853</div><div class="mt-name">Tissot</div><div class="mt-desc">Two watches: the gentlemanly Powermatic 80 and the retro PR 516 Chronograph.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 1888</div><div class="mt-name">Certina</div><div class="mt-desc">DS Action Diver and GMT — two versatile tool watches with Swatch Group reliability.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 1888</div><div class="mt-name">Frederique Constant</div><div class="mt-desc">Accessible Swiss manufacture. The Classics Index Auto embodies understated refinement.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Switzerland · Est. 2014</div><div class="mt-name">Formex</div><div class="mt-desc">Independent microbrand disrupting the market. The Essence ThirtyNine is a statement of mechanical confidence.</div></a>
+  </div>
+
+  <!-- INDEPENDENT TIER -->
+  <div class="tier-head" style="margin-top:2rem"><span class="tier-lbl">Independent &amp; Heritage</span><div class="tier-line"></div><span class="tier-desc">Character Over Prestige</span></div>
+  <div class="mini-grid">
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Germany · Est. 1906</div><div class="mt-name">NOMOS Glashütte</div><div class="mt-desc">Bauhaus minimalism and in-house movements from the watchmaking capital of Germany. The Tangente is a masterpiece of restraint.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Germany · Est. 1861</div><div class="mt-name">Junghans</div><div class="mt-desc">The Max Bill Automatic — a Bauhaus icon with a clean dial that still looks radical seven decades on.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">Germany · Est. 1925</div><div class="mt-name">Laco</div><div class="mt-desc">Authentic German pilot watches with direct heritage from the original Beobachtungsuhren. Still made in Pforzheim.</div></a>
+    <a href="watches.html" class="mini-tile"><div class="mt-country">USA · Est. 1875</div><div class="mt-name">Bulova</div><div class="mt-desc">The Lunar Pilot — a faithful re-edition of the Caliber 2333 worn on the Moon. NASA-approved since 1971.</div></a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="fcol"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="fcol"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="fbot"><p>© 2025 Calibre. All rights reserved.</p><div class="flogo">Calibr<em>e</em></div><p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p></div>
+</footer>
+<script>var btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');btn.addEventListener('click',function(){btn.classList.toggle('open');menu.classList.toggle('open')});</script>
+</body>
+</html>

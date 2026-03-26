@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibre — New Arrivals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#080c14;--navy:#0c1220;--navy-mid:#111827;--navy-img:#0e1525;--bronze:#b8954a;--bronze-lt:#d4ae6e;--bronze-dim:rgba(184,149,74,.18);--bronze-faint:rgba(184,149,74,.06);--cream:#ede8df;--slate:#6b7585;--slate-mid:#8a95a3;--px:1rem;--nav-h:3.75rem;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans','Helvetica Neue',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-style:none}
+
+.announce{background:var(--navy);border-bottom:1px solid var(--bronze-dim);text-align:center;padding:.5rem var(--px);font-size:.625rem;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bronze-dim);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-style:italic;letter-spacing:.22em;color:var(--cream);text-transform:uppercase}
+.nav-logo em{color:var(--bronze);font-style:normal}
+.nav-links{display:none;gap:1.75rem;align-items:center}
+.nav-links a{color:var(--slate);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--cream)}.nav-links a.on{color:var(--bronze);border-bottom:1px solid var(--bronze);padding-bottom:2px}
+.nav-right{display:none;gap:1.25rem;align-items:center}
+.nav-right a{color:var(--slate);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;transition:color .2s;font-weight:500}
+.nav-right a:hover{color:var(--bronze)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:calc(var(--nav-h) + 1.875rem);left:0;right:0;background:rgba(8,12,20,.98);border-bottom:1px solid var(--bronze-dim);padding:1.5rem var(--px);gap:1rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--slate);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid var(--bronze-faint);transition:color .2s;font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{color:var(--bronze)}
+.mob-acts{display:flex;gap:1.5rem;padding-top:.5rem}.mob-acts a{border-bottom:none;font-size:.625rem}
+
+/* HERO BANNER */
+.hero-banner{
+  min-height:40vh;background:linear-gradient(135deg,var(--navy) 0%,var(--ink) 100%);
+  border-bottom:1px solid var(--bronze-dim);
+  display:flex;align-items:center;padding:3rem var(--px) 2.5rem;
+  position:relative;overflow:hidden;
+}
+.hero-banner::before{content:'';position:absolute;top:-40%;right:-5%;width:min(500px,80vw);height:min(500px,80vw);border-radius:50%;background:radial-gradient(circle,rgba(184,149,74,.06) 0%,transparent 70%);pointer-events:none}
+.hb-eyebrow{font-family:var(--sans);font-size:.5625rem;letter-spacing:.52em;text-transform:uppercase;color:var(--bronze);margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.hb-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--bronze)}
+.hb-date{font-family:var(--sans);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);margin-bottom:2rem;font-weight:300}
+.hb-date em{color:var(--bronze-lt);font-style:normal}
+.hero-banner h1{font-family:var(--serif);font-size:clamp(2rem,6vw,3.75rem);font-weight:300;font-style:italic;line-height:1.1;margin-bottom:.75rem}
+.hero-banner p{color:var(--slate-mid);font-size:.9375rem;max-width:34rem;line-height:1.75;font-weight:300}
+
+/* FEATURED NEW ARRIVAL — full-width hero card */
+.feature-card{
+  margin:2rem var(--px);border:1px solid var(--bronze-dim);background:var(--navy);
+  display:flex;flex-direction:column;overflow:hidden;transition:border-color .3s;
+}
+.feature-card:hover{border-color:rgba(184,149,74,.45)}
+.fc-img{background:var(--navy-img);border-bottom:1px solid var(--bronze-dim);aspect-ratio:16/7;overflow:hidden}
+.fc-img img{width:100%;height:100%;object-fit:contain;padding:2rem;transition:transform .5s}
+.feature-card:hover .fc-img img{transform:scale(1.04)}
+.fc-body{padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.fc-label{font-family:var(--sans);font-size:.4375rem;letter-spacing:.52em;text-transform:uppercase;color:var(--bronze);font-weight:500}
+.fc-brand{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--slate-mid);font-weight:500}
+.fc-name{font-family:var(--serif);font-size:clamp(1.25rem,3.5vw,2rem);font-style:italic;font-weight:300;color:var(--cream);line-height:1.2}
+.fc-ref{font-family:var(--sans);font-size:.5625rem;letter-spacing:.16em;color:var(--slate)}
+.fc-desc{font-size:.875rem;color:var(--slate-mid);line-height:1.75;font-weight:300;max-width:36rem;margin-top:.25rem}
+.fc-tags{display:flex;gap:.375rem;flex-wrap:wrap;margin-top:.25rem}
+.tag{font-family:var(--sans);font-size:.4375rem;letter-spacing:.22em;text-transform:uppercase;color:var(--slate-mid);border:1px solid var(--bronze-dim);padding:.25rem .5rem;font-weight:500}
+.fc-foot{display:flex;align-items:center;gap:1.25rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--bronze-dim);flex-wrap:wrap}
+.fc-price{font-family:var(--serif);font-size:1.375rem;font-style:italic;color:var(--bronze-lt)}
+.btn-primary{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;padding:.75rem 1.5rem;cursor:pointer;transition:background .2s;border:none;display:inline-block}
+.btn-primary:hover{background:var(--bronze-lt)}
+
+/* ARRIVALS GRID */
+.arrivals-wrap{padding:0 var(--px) 4rem}
+.sec-head{display:flex;align-items:center;gap:.75rem;margin:2rem 0 1.5rem}
+.sec-lbl{font-family:var(--sans);font-size:.5rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;font-weight:500}
+.sec-line{flex:1;height:1px;background:var(--bronze-dim)}
+.sec-cnt{font-family:var(--sans);font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);white-space:nowrap;font-weight:500}
+.agrid{display:grid;grid-template-columns:1fr;gap:1rem}
+
+/* arrival card */
+.acard{background:var(--navy);border:1px solid var(--bronze-dim);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.acard:hover{border-color:rgba(184,149,74,.45);transform:translateY(-2px)}
+.ac-badge{position:absolute;top:.875rem;left:.875rem;z-index:2;font-family:var(--sans);font-size:.4375rem;letter-spacing:.38em;text-transform:uppercase;padding:.25rem .625rem;background:var(--bronze);color:var(--ink);font-weight:500}
+.ac-date{position:absolute;top:.875rem;right:.875rem;z-index:2;font-family:var(--sans);font-size:.4375rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);background:rgba(8,12,20,.85);padding:.25rem .5rem;font-weight:500}
+.ac-img{background:var(--navy-img);aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--bronze-dim)}
+.ac-img img{width:100%;height:100%;object-fit:contain;padding:1.25rem;transition:transform .4s}
+.acard:hover .ac-img img{transform:scale(1.06)}
+.ac-body{padding:1rem;display:flex;flex-direction:column;flex:1}
+.ac-brand{font-family:var(--sans);font-size:.4375rem;letter-spacing:.48em;text-transform:uppercase;color:var(--bronze);margin-bottom:.3rem;font-weight:500}
+.ac-name{font-family:var(--serif);font-size:.9375rem;font-style:italic;color:var(--cream);margin-bottom:.2rem;line-height:1.3}
+.ac-ref{font-family:var(--sans);font-size:.5rem;letter-spacing:.18em;color:var(--slate);margin-bottom:.625rem}
+.ac-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.625rem}
+.ac-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.625rem;border-top:1px solid var(--bronze-dim)}
+.ac-price{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--bronze-lt)}
+.vbtn{background:var(--bronze);color:var(--ink);font-family:var(--sans);font-size:.4375rem;letter-spacing:.3em;text-transform:uppercase;padding:.4375rem .75rem;font-weight:500;transition:background .2s;border:none;cursor:pointer;display:inline-block}
+.vbtn:hover{background:var(--bronze-lt)}
+
+/* NOTIFY BOX */
+.notify{background:var(--navy);border:1px solid var(--bronze-dim);padding:2rem var(--px);margin:0 var(--px) 2rem;text-align:center;position:relative;overflow:hidden}
+.notify::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(184,149,74,.05) 0%,transparent 70%);pointer-events:none}
+.notify h3{font-family:var(--serif);font-size:clamp(1.25rem,3vw,1.875rem);font-style:italic;font-weight:300;color:var(--cream);margin-bottom:.5rem;position:relative;z-index:2}
+.notify p{color:var(--slate-mid);font-size:.875rem;margin-bottom:1.25rem;font-weight:300;position:relative;z-index:2}
+.notify-form{display:flex;gap:.5rem;max-width:28rem;margin:0 auto;position:relative;z-index:2;flex-wrap:wrap;justify-content:center}
+.notify-form input{flex:1;min-width:12rem;background:var(--ink);border:1px solid var(--bronze-dim);color:var(--cream);font-family:var(--sans);font-size:.75rem;padding:.625rem 1rem;outline:none;transition:border-color .2s;font-weight:300}
+.notify-form input::placeholder{color:var(--slate)}
+.notify-form input:focus{border-color:var(--bronze)}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid var(--bronze-dim);padding:2.75rem var(--px) 1.5rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.fcol h4{font-family:var(--sans);font-size:.5rem;letter-spacing:.44em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem;font-weight:500}
+.fcol li{margin-bottom:.625rem}.fcol a{color:var(--slate);font-size:.8125rem;transition:color .2s;font-weight:300}.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--bronze-dim);padding-top:1.25rem;display:flex;flex-direction:column;gap:.625rem;align-items:center;text-align:center}
+.fbot p{font-family:var(--sans);font-size:.625rem;letter-spacing:.18em;color:var(--slate)}
+.flogo{font-family:var(--serif);font-size:1.1rem;font-style:italic;letter-spacing:.28em;color:var(--cream);text-transform:uppercase}
+.flogo em{color:var(--bronze);font-style:normal}
+
+@media(min-width:480px){:root{--px:1.5rem}.agrid{grid-template-columns:repeat(2,1fr)}.fc-body{flex-direction:row;align-items:flex-start;gap:1.5rem;flex-wrap:wrap}}
+@media(min-width:768px){:root{--px:2.5rem;--nav-h:4rem}.nav-right{display:flex}.fgrid{grid-template-columns:repeat(4,1fr)}.fbot{flex-direction:row;justify-content:space-between;text-align:left}.feature-card{flex-direction:row}.fc-img{border-bottom:none;border-right:1px solid var(--bronze-dim);aspect-ratio:auto;width:45%;flex-shrink:0}.fc-body{padding:2rem 1.75rem;border-bottom:none}}
+@media(min-width:1024px){:root{--px:3rem}.nav-links{display:flex}.hamburger{display:none}.mobile-menu{display:none!important}.agrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1280px){:root{--px:4rem}}
+</style>
+</head>
+<body>
+<div class="announce">Free shipping above ₹1,50,000 &nbsp;·&nbsp; Authorised Dealer &nbsp;·&nbsp; 2-Year Service Warranty</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Calibr<em>e</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="watches.html">Watches</a></li>
+    <li><a href="brands.html">Brands</a></li><li><a href="new-arrivals.html" class="on">New Arrivals</a></li>
+    <li><a href="straps.html">Straps</a></li><li><a href="about.html">About</a></li><li><a href="members.html">Members</a></li>
+  </ul>
+  <div class="nav-right"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="watches.html">Watches</a><a href="brands.html">Brands</a>
+  <a href="new-arrivals.html" class="on">New Arrivals</a><a href="straps.html">Straps</a><a href="about.html">About</a><a href="members.html">Members</a>
+  <div class="mob-acts"><a href="#">Search</a><a href="#">Wishlist</a><a href="#">Cart (0)</a></div>
+</div>
+
+<div class="hero-banner">
+  <div>
+    <div class="hb-eyebrow">What's New</div>
+    <h1>Recent Arrivals<br><em style="color:var(--bronze)">at Calibre</em></h1>
+    <p class="hb-date">Updated <em>March 2025</em></p>
+    <p>Fresh additions to the collection — each one selected after months of deliberation.</p>
+  </div>
+</div>
+
+<!-- FEATURED ARRIVAL -->
+<div class="feature-card">
+  <div class="fc-img">
+    <img src="watches-images/Tudor-Pelagos-FXD.jpg" alt="Tudor Pelagos FXD">
+  </div>
+  <div class="fc-body">
+    <div>
+      <div class="fc-label">Featured Arrival · March 2025</div>
+      <div class="fc-brand">Tudor</div>
+      <div class="fc-name">Pelagos FXD</div>
+      <div class="fc-ref">Ref. M25707KN-0001</div>
+      <div class="fc-desc">The Pelagos FXD was born from Tudor's partnership with the French Marine Nationale. Fixed strap bars, a 42mm titanium case, and 500m water resistance make it the most purposeful diver in our collection. In-house manufacture movement with 70hr power reserve.</div>
+      <div class="fc-tags"><span class="tag">42mm</span><span class="tag">Titanium Case</span><span class="tag">500m WR</span><span class="tag">Automatic</span><span class="tag">In-House Cal.</span></div>
+    </div>
+    <div class="fc-foot">
+      <div class="fc-price">₹3,99,000</div>
+      <a class="btn-primary" href="https://www.tudorwatch.com/en/watches/pelagos-fxd/m25707kn-0001" target="_blank">View at Tudor</a>
+    </div>
+  </div>
+</div>
+
+<!-- REMAINING NEW ARRIVALS -->
+<div class="arrivals-wrap">
+  <div class="sec-head"><span class="sec-lbl">All New Arrivals</span><div class="sec-line"></div><span class="sec-cnt">5 pieces · March 2025</span></div>
+  <div class="agrid">
+
+    <div class="acard">
+      <span class="ac-badge">New</span><span class="ac-date">Mar 2025</span>
+      <div class="ac-img"><img src="watches-images/Oris Aquis GMT Date.jpg" alt="Oris Aquis GMT Date"></div>
+      <div class="ac-body">
+        <div class="ac-brand">Oris</div><div class="ac-name">Aquis GMT Date</div><div class="ac-ref">Ref. 01 798 7754 4157</div>
+        <div class="ac-tags"><span class="tag">43.5mm</span><span class="tag">Automatic</span><span class="tag">300m WR</span><span class="tag">GMT</span></div>
+        <div class="ac-foot"><div class="ac-price">₹1,94,500</div><a class="vbtn" href="https://www.oris.ch/en/watch/aquis-gmt-date/01-798-7754-4157-07-8-22-05peb" target="_blank">View</a></div>
+      </div>
+    </div>
+
+    <div class="acard">
+      <span class="ac-badge">New</span><span class="ac-date">Feb 2025</span>
+      <div class="ac-img"><img src="watches-images/Nomos Tangente 38.jpg" alt="NOMOS Tangente 38"></div>
+      <div class="ac-body">
+        <div class="ac-brand">NOMOS</div><div class="ac-name">Tangente 38</div><div class="ac-ref">Ref. 101</div>
+        <div class="ac-tags"><span class="tag">38mm</span><span class="tag">Manual Wind</span><span class="tag">Bauhaus</span></div>
+        <div class="ac-foot"><div class="ac-price">₹2,08,000</div><a class="vbtn" href="https://nomos-glashuette.com/en/watches/tangente/101-tangente" target="_blank">View</a></div>
+      </div>
+    </div>
+
+    <div class="acard">
+      <span class="ac-badge">New</span><span class="ac-date">Feb 2025</span>
+      <div class="ac-img"><img src="watches-images/Hamilton Khaki Field Automatic.jpg" alt="Hamilton Khaki Field Automatic"></div>
+      <div class="ac-body">
+        <div class="ac-brand">Hamilton</div><div class="ac-name">Khaki Field Automatic</div><div class="ac-ref">Ref. H70455163</div>
+        <div class="ac-tags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">100m WR</span></div>
+        <div class="ac-foot"><div class="ac-price">₹47,900</div><a class="vbtn" href="https://www.hamiltonwatch.com/en-in/h70455163-khaki-field-auto.html" target="_blank">View</a></div>
+      </div>
+    </div>
+
+    <div class="acard">
+      <span class="ac-badge">New</span><span class="ac-date">Jan 2025</span>
+      <div class="ac-img"><img src="watches-images/Zenith El Primero.jpg" alt="Zenith El Primero"></div>
+      <div class="ac-body">
+        <div class="ac-brand">Zenith</div><div class="ac-name">El Primero 36,000 VpH</div><div class="ac-ref">Ref. 03.2040.400/69.C494</div>
+        <div class="ac-tags"><span class="tag">42mm</span><span class="tag">Automatic</span><span class="tag">10Hz Beat</span></div>
+        <div class="ac-foot"><div class="ac-price">₹5,18,000</div><a class="vbtn" href="https://www.zenith-watches.com/en_en/watches/el-primero/el-primero-36-000-vph-03-2040-400-69-c494" target="_blank">View</a></div>
+      </div>
+    </div>
+
+    <div class="acard">
+      <span class="ac-badge">New</span><span class="ac-date">Jan 2025</span>
+      <div class="ac-img"><img src="watches-images/Bulova Lunar Pilot Chronograph.jpg" alt="Bulova Lunar Pilot"></div>
+      <div class="ac-body">
+        <div class="ac-brand">Bulova</div><div class="ac-name">Lunar Pilot Chronograph</div><div class="ac-ref">Ref. 96B251</div>
+        <div class="ac-tags"><span class="tag">45mm</span><span class="tag">Quartz</span><span class="tag">NASA Heritage</span></div>
+        <div class="ac-foot"><div class="ac-price">₹24,995</div><a class="vbtn" href="https://www.bulova.com/en_us/96b251" target="_blank">View</a></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOTIFY -->
+  <div class="notify">
+    <h3>Stay Ahead of the Collection</h3>
+    <p>We add new pieces every month. Subscribe and be first to know.</p>
+    <div class="notify-form">
+      <input type="email" placeholder="your@email.com">
+      <a href="#" class="btn-primary">Notify Me</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Calibre</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="#">Authenticity</a></li><li><a href="#">Service &amp; Warranty</a></li><li><a href="#">Press</a></li></ul></div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="watches.html">All Watches</a></li><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="brands.html">Brands</a></li><li><a href="straps.html">Straps &amp; Accessories</a></li></ul></div>
+    <div class="fcol"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Watch Care Guide</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="fcol"><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">Reddit</a></li><li><a href="#">Newsletter</a></li></ul></div>
+  </div>
+  <div class="fbot"><p>© 2025 Calibre. All rights reserved.</p><div class="flogo">Calibr<em>e</em></div><p>Authorised Dealer &nbsp;·&nbsp; Mumbai, India</p></div>
+</footer>
+<script>var btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');btn.addEventListener('click',function(){btn.classList.toggle('open');menu.classList.toggle('open')});</script>
+</body>
+</html>
